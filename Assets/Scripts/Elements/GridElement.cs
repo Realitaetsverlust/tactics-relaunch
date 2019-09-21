@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Elements {
     public class GridElement : MonoBehaviour {
+        private MeshRenderer _renderer;
+        private float _height;
+       
         private GameObject _top;
         private GameObject _bottom;
         private GameObject _north;
@@ -18,7 +21,13 @@ namespace Elements {
         private GameObject _southMark;
         private GameObject _westMark;
 
+        private GameObject _indicator;
+        private Material _movementIndicator;
+
         public void Awake() {
+            this._renderer = this.GetComponent<MeshRenderer>();
+            this._height = this.transform.localScale.y;
+            
             this._top = this.transform.Find("top").gameObject;
             this._bottom = this.transform.Find("bottom").gameObject;
             this._north = this.transform.Find("north").gameObject;
@@ -32,6 +41,9 @@ namespace Elements {
             this._eastMark = this.transform.Find("mark/eastMark").gameObject;
             this._southMark = this.transform.Find("mark/southMark").gameObject;
             this._westMark = this.transform.Find("mark/westMark").gameObject;
+
+            this._indicator = this.transform.Find("indicator").gameObject;
+            this._movementIndicator = Resources.Load("Materials/WalkRangeMaterial") as Material;
         }
 
         /**
@@ -47,101 +59,19 @@ namespace Elements {
         public void unmarkAsActiveTile() {
             this._mark.SetActive(false);
         }
-        
-        /**
-         * Rangefinding method START
-         */
-        public static HashSet<GameObject> findAllTilesInRange(string tileId, int range) {
-            return _findAllTilesInRangeWithObject(GridController.getElementById(tileId), range, new HashSet<GameObject>());
-        }
-	
-        private static HashSet<GameObject> _findAllTilesInRangeWithObject(GameObject targetTile, int range, HashSet<GameObject> areaOfEffect) {
-            //Break condition for recursive call
-            if(range <= 0) {
-                return new HashSet<GameObject>();
-            }
 
-            HashSet<GameObject> foundTiles = findAdjacentTiles(targetTile);
-
-            foreach(GameObject foundTile in foundTiles) {
-                areaOfEffect.Add(foundTile);
-            }
-		
-            foreach(GameObject foundTile in foundTiles) {
-                HashSet<GameObject> pizdec = _findAllTilesInRangeWithObject(foundTile, range - 1, areaOfEffect);
-
-                if(pizdec.Any()) {
-                    foreach(GameObject piz in pizdec) {
-                        areaOfEffect.Add(piz);
-                    }
-                }
-            }
-
-            return areaOfEffect;
-        }
-        
-        private static HashSet<GameObject> findAdjacentTiles(GameObject targetTile) {
-            GameObject directionalTile;
-
-            HashSet<GameObject> adjacentTileList = new HashSet<GameObject>();
-
-            if((directionalTile = findNorthernTile(targetTile)) != null) {
-                adjacentTileList.Add(directionalTile);
-            }
-            if((directionalTile = findEasternTile(targetTile)) != null) {
-                adjacentTileList.Add(directionalTile);
-            }
-            if((directionalTile = findSouthernTile(targetTile)) != null) {
-                adjacentTileList.Add(directionalTile);
-            }
-            if((directionalTile = findWesternTile(targetTile)) != null) {
-                adjacentTileList.Add(directionalTile);
-            }
-		
-            return adjacentTileList;
+        public void markAsWithinRange() {
+            this._indicator.GetComponent<Renderer>().material = this._movementIndicator;
+            this._indicator.SetActive(true);
         }
 
-        private static GameObject findNorthernTile(GameObject targetTile) {
-            return findTileInDirection('e', targetTile);
-        }	
-	
-        private static GameObject findEasternTile(GameObject targetTile) {
-            return findTileInDirection('e', targetTile);
-        }
-	
-        private static GameObject findSouthernTile(GameObject targetTile) {
-            return findTileInDirection('s', targetTile);
-        }	
-	
-        private static GameObject findWesternTile(GameObject targetTile) {
-            return findTileInDirection('w', targetTile);
+        public void unmarkAsWithinRange() {
+            this._indicator.SetActive(false);
         }
 
-        private static GameObject findTileInDirection(char direction, GameObject targetTile) {
-            var tileCoords = targetTile.transform.name.Split('-');
-		
-            switch(direction) {
-                case 'n':
-                    tileCoords[1] = (Convert.ToInt32(tileCoords[1]) + 1).ToString();
-                    break;
-                case 'e':
-                    tileCoords[0] = (Convert.ToInt32(tileCoords[0]) + 1).ToString();
-                    break;
-                case 's':
-                    tileCoords[1] = (Convert.ToInt32(tileCoords[1]) - 1).ToString();
-                    break;
-                case 'w':
-                    tileCoords[0] = (Convert.ToInt32(tileCoords[0]) - 1).ToString();
-                    break;
-            }
-		
-            GameObject tile = GridController.getElementById(string.Join("-", tileCoords));
-
-            return tile;
+        public Vector3 getCenterPositionForCharacter() {
+            Vector3 center = this._renderer.bounds.center;
+            return new Vector3(center.x, this._height + 1.5f, center.z);
         }
-        
-        /**
-         * Rangefinding method END
-         */
     }
 }
