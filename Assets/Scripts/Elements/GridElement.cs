@@ -23,6 +23,7 @@ namespace Elements {
 
         private GameObject _indicator;
         private Material _movementIndicator;
+        private Material _test;
 
         public void Awake() {
             this._renderer = this.GetComponent<MeshRenderer>();
@@ -43,7 +44,8 @@ namespace Elements {
             this._westMark = this.transform.Find("mark/westMark").gameObject;
 
             this._indicator = this.transform.Find("indicator").gameObject;
-            this._movementIndicator = Resources.Load("Materials/WalkRangeMaterial") as Material;
+            this._movementIndicator = Resources.Load("Material/WalkRangeMaterial") as Material;
+            this._test = Resources.Load("Material/WalkRangeMaterial") as Material;
         }
 
         /**
@@ -58,6 +60,11 @@ namespace Elements {
          */
         public void unmarkAsActiveTile() {
             this._mark.SetActive(false);
+        }
+
+        public void markAsYellow() {
+            this._indicator.GetComponent<Renderer>().material = this._test;
+            this._indicator.SetActive(true);
         }
 
         public void markAsWithinRange() {

@@ -1,10 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Elements;
 using UnityEngine;
 
 namespace Utils {
     public class Rangefinder : MonoBehaviour {
+        
+        public bool waitActive;
+
+        public IEnumerable<WaitForSeconds> wait() {
+            this.waitActive = true;
+            yield return new WaitForSeconds(2.0f);
+            this.waitActive = false;
+        }
+        
         public static HashSet<GameObject> findAllTilesInRange(GameObject tile, int range) {
             return _findAllTilesInRangeWithObject(tile, range, new HashSet<GameObject>());
         }
@@ -48,13 +58,13 @@ namespace Utils {
             }
 
             if((directionalTile = findSouthernTile(targetTile)) != null) {
-                adjacentTileList.Add(directionalTile);
+                adjacentTileList.Add(directionalTile);               
             }
 
             if((directionalTile = findWesternTile(targetTile)) != null) {
                 adjacentTileList.Add(directionalTile);
             }
-
+            
             return adjacentTileList;
         }
 

@@ -11,6 +11,7 @@ public class GridController : CombatController {
 	private static GameObject _activeTile;
 	private static GameObject _previousTile;
 
+
 	public void Awake() {
 		GridController._grid = GameObject.Find("terrainParent");
 		GridController._gridElements = new Dictionary<string, GameObject>();
@@ -21,11 +22,15 @@ public class GridController : CombatController {
 		}
 	}
 	
-	private void Start() {
-		HashSet<GameObject> tiles = Rangefinder.findAllTilesInRange(GridController.getElementById("7-8"), 6);
+	private void Update() {
+/*		HashSet<GameObject> tiles = Rangefinder.findAllTilesInRange(GridController.getElementById("7-8"), 6);
 		foreach(GameObject tile in tiles) {
 			tile.GetComponent<GridElement>().markAsWithinRange();
-		}
+		}*/
+	}
+
+	public static void checkForCharacterPanelDisplay() {
+		
 	}
 
 	public static void markNewTileAsActive(string id) {
