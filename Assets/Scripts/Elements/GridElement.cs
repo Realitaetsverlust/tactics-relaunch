@@ -7,6 +7,8 @@ namespace Elements {
     public class GridElement : MonoBehaviour {
         private MeshRenderer _renderer;
         private float _height;
+
+        private GameObject _cube;
        
         private GameObject _top;
         private GameObject _bottom;
@@ -29,15 +31,15 @@ namespace Elements {
             this._renderer = this.GetComponent<MeshRenderer>();
             this._height = this.transform.localScale.y;
             
-            this._top = this.transform.Find("top").gameObject;
-            this._bottom = this.transform.Find("bottom").gameObject;
-            this._north = this.transform.Find("north").gameObject;
-            this._east = this.transform.Find("east").gameObject;
-            this._south = this.transform.Find("south").gameObject;
-            this._west = this.transform.Find("west").gameObject;
+            this._cube = this.transform.Find("cube").gameObject;
+            this._top = this.transform.Find("cube/top").gameObject;
+            this._bottom = this.transform.Find("cube/bottom").gameObject;
+            this._north = this.transform.Find("cube/north").gameObject;
+            this._east = this.transform.Find("cube/east").gameObject;
+            this._south = this.transform.Find("cube/south").gameObject;
+            this._west = this.transform.Find("cube/west").gameObject;
 
             this._mark = this.transform.Find("mark").gameObject;
-            
             this._northMark = this.transform.Find("mark/northMark").gameObject;
             this._eastMark = this.transform.Find("mark/eastMark").gameObject;
             this._southMark = this.transform.Find("mark/southMark").gameObject;

@@ -1,6 +1,9 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Runtime.CompilerServices;
+using Characters;
 using UnityEngine;
 using UnityEngine.UI;
+using CharacterController = UnityEngine.CharacterController;
 
 namespace Elements {
     public class BaseCharacterStatPanel : MonoBehaviour {
@@ -12,7 +15,7 @@ namespace Elements {
         private static Text _statusText;
         
         static BaseCharacterStatPanel() {
-            BaseCharacterStatPanel._baseCharacterStatPanel = GameObject.Find("BaseCharacterStatPanel");
+            BaseCharacterStatPanel._baseCharacterStatPanel = GameObject.Find("BaseCharactGameObjecterStatPanel");
             BaseCharacterStatPanel._nameText = BaseCharacterStatPanel._baseCharacterStatPanel.transform.Find("Name").GetComponent<Text>();
             BaseCharacterStatPanel._levelText = BaseCharacterStatPanel._baseCharacterStatPanel.transform.Find("Level").GetComponent<Text>();
             BaseCharacterStatPanel._hpText = BaseCharacterStatPanel._baseCharacterStatPanel.transform.Find("HP").GetComponent<Text>();
@@ -20,11 +23,11 @@ namespace Elements {
             BaseCharacterStatPanel._statusText = BaseCharacterStatPanel._baseCharacterStatPanel.transform.Find("Status").GetComponent<Text>();
         }
 
-        public static void populateCharacterPanel() {
-            BaseCharacterStatPanel._nameText.text = "Luyen";
-            BaseCharacterStatPanel._levelText.text = "50";
-            BaseCharacterStatPanel._hpText.text = "60/60";
-            BaseCharacterStatPanel._mpText.text = "115/115";
+        public static void populateCharacterPanel(CharacterBase character) {
+            BaseCharacterStatPanel._nameText.text = character.charName;
+            BaseCharacterStatPanel._levelText.text = character.level.ToString();
+            BaseCharacterStatPanel._hpText.text = String.Concat(character.currentHp.ToString(), "/", character.maxHp.ToString());
+            BaseCharacterStatPanel._mpText.text = String.Concat(character.currentMp.ToString(), "/", character.maxMp.ToString());
             BaseCharacterStatPanel._statusText.text = "";
         }
         
