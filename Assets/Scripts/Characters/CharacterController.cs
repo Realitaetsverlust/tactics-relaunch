@@ -3,7 +3,7 @@
 namespace Characters {
     public class CharacterController : CharacterBase
     {
-        public void init() {
+        public CharacterController() {
             this.charName = "Luyen";
             this.level = 50;
             this.exp = 0;

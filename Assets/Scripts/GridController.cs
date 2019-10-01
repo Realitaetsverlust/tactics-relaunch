@@ -29,10 +29,6 @@ public class GridController : CombatController {
 		}*/
 	}
 
-	public static void checkForCharacterPanelDisplay() {
-		
-	}
-
 	public static void markNewTileAsActive(string id) {
 		GridController._previousTile = GridController._activeTile;
 		GridController._activeTile = GridController.getElementById(id);

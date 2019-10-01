@@ -13,14 +13,20 @@ namespace Characters {
 		public int maxMp;
 		public int currentMp;
 		private GameObject _baseCharacterStatPanel;
-		
+		private GameObject _currentTile;
 
 		public void setCharacterToTile(GameObject tile) {
+			tile.GetComponent<GridElement>().setCharacterToThisTile(this._currentTile, this.gameObject);
+			this._currentTile = tile;
 			this.transform.position = tile.GetComponent<GridElement>().getCenterPositionForCharacter();
 		}
 
 		public void fillBaseCharacterStatPanel() {
-			BaseCharacterStatPanel.populateCharacterPanel(this);
+			BaseCharacterStatPanel.showCharacterPanelForCharacter(this.gameObject);
+		}
+
+		public GameObject getCurrentTileOfCharacter() {
+			return this._currentTile;
 		}
 	}
 }

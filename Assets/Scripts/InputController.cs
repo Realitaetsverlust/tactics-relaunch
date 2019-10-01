@@ -8,21 +8,27 @@ public class InputController : MonoBehaviour
 {
     private Ray _ray;
     private RaycastHit _hit;
-    private int _layerMask;
+    private readonly int _layerMask;
 
-    private InputController() {
+    public InputController() {
         this._layerMask = 1 << 9;
     }
 
     void Update() {
-        if(CameraController.main != null) {
-            this._ray = CameraController.main.ScreenPointToRay(Input.mousePosition);
-        }
-
+        this._ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        
         if(Physics.Raycast(this._ray, out this._hit, float.PositiveInfinity, this._layerMask)) {
-            Debug.Log(this._hit.transform.name);
-            //var parent = this._hit.transform.parent;
-            //GridController.markNewTileAsActive(parent.name == "mark" ? parent.parent.name : parent.name);
+            Transform parent = this._hit.transform.parent;
+            GridElement parentController = parent.gameObject.GetComponent<GridElement>();
+            GridController.markNewTileAsActive(parent.name);
+
+            GameObject character = parentController.getCharacterOnThisTile();
+            
+            if(character != null) {
+                BaseCharacterStatPanel.showCharacterPanelForCharacter(character);
+            } else {
+                BaseCharacterStatPanel.hideCharacterPanel();
+            }
         }
     }
 }

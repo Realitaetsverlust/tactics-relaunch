@@ -27,6 +27,8 @@ namespace Elements {
         private Material _movementIndicator;
         private Material _test;
 
+        private GameObject _playerOnTile;
+
         public void Awake() {
             this._renderer = this.GetComponent<MeshRenderer>();
             this._height = this.transform.localScale.y;
@@ -48,6 +50,8 @@ namespace Elements {
             this._indicator = this.transform.Find("indicator").gameObject;
             this._movementIndicator = Resources.Load("Material/WalkRangeMaterial") as Material;
             this._test = Resources.Load("Material/WalkRangeMaterial") as Material;
+
+            this._playerOnTile = null;
         }
 
         /**
@@ -76,6 +80,21 @@ namespace Elements {
 
         public void unmarkAsWithinRange() {
             this._indicator.SetActive(false);
+        }
+
+        public void setCharacterToThisTile(GameObject oldTile, GameObject player) {
+            if(oldTile != null) {
+                oldTile.GetComponent<GridElement>().emptyCharacterSlot();
+            }
+            this._playerOnTile = player;
+        }
+
+        public void emptyCharacterSlot() {
+            this._playerOnTile = null;
+        }
+
+        public GameObject getCharacterOnThisTile() {
+            return this._playerOnTile;
         }
 
         public Vector3 getCenterPositionForCharacter() {

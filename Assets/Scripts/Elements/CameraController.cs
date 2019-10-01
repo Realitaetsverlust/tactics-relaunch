@@ -3,7 +3,7 @@
 namespace Elements {
     public class CameraController : MonoBehaviour {
         public static Camera main;
-        void Start() {
+        void Awake() {
             CameraController.main = Camera.main;
         }
     }

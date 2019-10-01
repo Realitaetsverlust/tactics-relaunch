@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using Characters;
 using UnityEngine;
 using UnityEngine.UI;
-using CharacterController = UnityEngine.CharacterController;
+using CharacterController = Characters.CharacterController;
 
 namespace Elements {
     public class BaseCharacterStatPanel : MonoBehaviour {
@@ -16,6 +16,7 @@ namespace Elements {
         
         static BaseCharacterStatPanel() {
             BaseCharacterStatPanel._baseCharacterStatPanel = GameObject.Find("BaseCharactGameObjecterStatPanel");
+            Debug.Log(BaseCharacterStatPanel._baseCharacterStatPanel.transform.Find("Name"));
             BaseCharacterStatPanel._nameText = BaseCharacterStatPanel._baseCharacterStatPanel.transform.Find("Name").GetComponent<Text>();
             BaseCharacterStatPanel._levelText = BaseCharacterStatPanel._baseCharacterStatPanel.transform.Find("Level").GetComponent<Text>();
             BaseCharacterStatPanel._hpText = BaseCharacterStatPanel._baseCharacterStatPanel.transform.Find("HP").GetComponent<Text>();
@@ -23,7 +24,12 @@ namespace Elements {
             BaseCharacterStatPanel._statusText = BaseCharacterStatPanel._baseCharacterStatPanel.transform.Find("Status").GetComponent<Text>();
         }
 
-        public static void populateCharacterPanel(CharacterBase character) {
+        public static void showCharacterPanelForCharacter(GameObject character) {
+            BaseCharacterStatPanel.populateCharacterPanel(character.GetComponent<CharacterController>());
+            BaseCharacterStatPanel.showCharacterPanel();
+        }
+
+        private static void populateCharacterPanel(CharacterController character) {
             BaseCharacterStatPanel._nameText.text = character.charName;
             BaseCharacterStatPanel._levelText.text = character.level.ToString();
             BaseCharacterStatPanel._hpText.text = String.Concat(character.currentHp.ToString(), "/", character.maxHp.ToString());
