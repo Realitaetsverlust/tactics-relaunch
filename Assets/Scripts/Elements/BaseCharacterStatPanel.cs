@@ -15,8 +15,10 @@ namespace Elements {
         private static Text _statusText;
         
         static BaseCharacterStatPanel() {
-            BaseCharacterStatPanel._baseCharacterStatPanel = GameObject.Find("BaseCharactGameObjecterStatPanel");
-            Debug.Log(BaseCharacterStatPanel._baseCharacterStatPanel.transform.Find("Name"));
+            BaseCharacterStatPanel._baseCharacterStatPanel = GameObject.Find("BaseCharacterStatPanel");
+            GameObject.Find("Static::HP").GetComponent<Text>().text = "HP:";
+            GameObject.Find("Static::MP").GetComponent<Text>().text = "MP:";
+            GameObject.Find("Static::Level").GetComponent<Text>().text = "Lv";
             BaseCharacterStatPanel._nameText = BaseCharacterStatPanel._baseCharacterStatPanel.transform.Find("Name").GetComponent<Text>();
             BaseCharacterStatPanel._levelText = BaseCharacterStatPanel._baseCharacterStatPanel.transform.Find("Level").GetComponent<Text>();
             BaseCharacterStatPanel._hpText = BaseCharacterStatPanel._baseCharacterStatPanel.transform.Find("HP").GetComponent<Text>();

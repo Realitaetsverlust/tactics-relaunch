@@ -3,7 +3,8 @@
 namespace Characters {
     public class CharacterController : CharacterBase
     {
-        public CharacterController() {
+        void Start()
+        {
             this.charName = "Luyen";
             this.level = 50;
             this.exp = 0;
@@ -11,10 +12,6 @@ namespace Characters {
             this.currentHp = 650;
             this.maxMp = 210;
             this.currentMp = 210;
-        }
-        
-        void Start()
-        {
             this.setCharacterToTile(GridController.getElementById("7-8"));
         }
     }
