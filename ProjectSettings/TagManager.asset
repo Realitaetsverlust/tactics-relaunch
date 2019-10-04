@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - terrainParent
+  - combatCharacter
   layers:
   - Default
   - TransparentFX

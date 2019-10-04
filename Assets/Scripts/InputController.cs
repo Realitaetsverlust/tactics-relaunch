@@ -18,7 +18,7 @@ public class InputController : MonoBehaviour
         this._ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         
         if(Physics.Raycast(this._ray, out this._hit, float.PositiveInfinity, this._layerMask)) {
-            Transform parent = this._hit.transform.parent;
+/*            Transform parent = this._hit.transform.parent;
             GridElement parentController = parent.gameObject.GetComponent<GridElement>();
             GridController.markNewTileAsActive(parent.name);
 
@@ -28,7 +28,7 @@ public class InputController : MonoBehaviour
                 BaseCharacterStatPanel.showCharacterPanelForCharacter(character);
             } else {
                 BaseCharacterStatPanel.hideCharacterPanel();
-            }
+            }*/
         }
     }
 }
