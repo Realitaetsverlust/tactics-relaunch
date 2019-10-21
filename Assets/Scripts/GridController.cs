@@ -21,13 +21,6 @@ public class GridController : CombatController {
 			GridController._gridElements.Add(child.name, child.gameObject);
 		}
 	}
-	
-	private void Update() {
-/*		HashSet<GameObject> tiles = Rangefinder.findAllTilesInRange(GridController.getElementById("7-8"), 6);
-		foreach(GameObject tile in tiles) {
-			tile.GetComponent<GridElement>().markAsWithinRange();
-		}*/
-	}
 
 	public static void markNewTileAsActive(string id) {
 		GridController._previousTile = GridController._activeTile;
@@ -38,6 +31,10 @@ public class GridController : CombatController {
 		}
 
 		GridController._activeTile.GetComponent<GridElement>().markAsActiveTile();
+	}
+
+	public static GameObject getActiveTile() {
+		return GridController._activeTile;
 	}
 
 	public static GameObject getElementById(string id) {
