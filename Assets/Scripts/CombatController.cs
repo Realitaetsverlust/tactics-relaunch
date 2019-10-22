@@ -17,6 +17,15 @@ public class CombatController : MonoBehaviour {
         GameObject[] characters = GameObject.FindGameObjectsWithTag("combatCharacter");
         this.placeUnits(characters);
         this.turnOrder = new TurnOrder(characters);
+        Debug.Log(this.turnOrder.getNextCharacter().name);
+        Debug.Log(this.turnOrder.getNextCharacter().name);
+        Debug.Log(this.turnOrder.getNextCharacter().name);
+        Debug.Log(this.turnOrder.getNextCharacter().name);
+        Debug.Log(this.turnOrder.getNextCharacter().name);
+        Debug.Log(this.turnOrder.getNextCharacter().name);
+        Debug.Log(this.turnOrder.getNextCharacter().name);
+        Debug.Log(this.turnOrder.getNextCharacter().name);
+        Debug.Log(this.turnOrder.getNextCharacter().name);
     }
 
     public void Update() {
