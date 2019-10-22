@@ -12,6 +12,7 @@ namespace Characters {
 		public int currentHp;
 		public int maxMp;
 		public int currentMp;
+		public int init;
 		private GameObject _baseCharacterStatPanel;
 		private GameObject _currentTile;
 
