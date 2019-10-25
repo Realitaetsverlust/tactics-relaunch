@@ -3,5 +3,6 @@
 namespace Characters {
     public class CharacterController : CharacterBase
     {
+        
     }
 }

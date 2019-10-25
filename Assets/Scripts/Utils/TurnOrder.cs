@@ -22,7 +22,7 @@ namespace Utils {
 
             this._charactersInCombat = this._turnOrder.Count;
         }
-
+        
         public GameObject getNextCharacter() {
             this._turn += 1;
 
@@ -31,6 +31,8 @@ namespace Utils {
             }
 
             return this._turnOrder.ElementAt(this._turn - 1).Value;
+            
+            
         }
     }
 }

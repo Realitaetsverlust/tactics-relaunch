@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Runtime.CompilerServices;
 using Elements;
 using UnityEngine;
-using Utils;
 
-public class GridController : CombatController {
+public class GridController : MonoBehaviour {
 	private static GameObject _grid;
 	private static Dictionary<String, GameObject> _gridElements;
 	private static GameObject _activeTile;
 	private static GameObject _previousTile;
-
+	private GameObject _godObject;
 
 	public void Awake() {
+		this._godObject = GameObject.Find("GodObject");
 		GridController._grid = GameObject.Find("terrainParent");
 		GridController._gridElements = new Dictionary<string, GameObject>();
 
@@ -34,14 +34,18 @@ public class GridController : CombatController {
 	}
 
 	public static GameObject getActiveTile() {
-		return GridController._activeTile;
+		if(GridController._activeTile != null) {
+			return GridController._activeTile;
+		}
+
+		return null;
 	}
 
 	public static GameObject getElementById(string id) {
-		try {
+		if(GridController._gridElements[id] != null) {
 			return GridController._gridElements[id];
-		} catch(Exception e) {
-			return null;
 		}
+
+		return null;
 	}
 }
