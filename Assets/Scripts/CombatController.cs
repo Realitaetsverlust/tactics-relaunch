@@ -39,8 +39,8 @@ public class CombatController : MonoBehaviour {
     }
     
     public void swapToNextCharacter() {
-        GameObject nextChar = this.turnOrder.getNextCharacter();
-        this._cameraController.setCameraToCharacter(nextChar);
+        CombatController.activeCharacter = this.turnOrder.getNextCharacter();
+        this._cameraController.setCameraToCharacter(CombatController.activeCharacter);
     }
 
     public void placeUnits(GameObject[] characters) {
