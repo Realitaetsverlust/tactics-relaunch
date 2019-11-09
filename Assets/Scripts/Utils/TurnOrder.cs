@@ -6,13 +6,11 @@ using CharacterController = Characters.CharacterController;
 namespace Utils {
     public class TurnOrder {
         private SortedDictionary<int, GameObject> _turnOrder;
-        private List<int> _speeds;
         private int _charactersInCombat;
         private int _turn;
 
         public TurnOrder(GameObject[] characters) {
             this._turnOrder = new SortedDictionary<int, GameObject>(Comparer<int>.Create((x, y) => y.CompareTo(x)));
-            this._speeds = new List<int>();
             int charInit = 0;
 
             foreach(GameObject character in characters) {
@@ -31,8 +29,6 @@ namespace Utils {
             }
 
             return this._turnOrder.ElementAt(this._turn - 1).Value;
-            
-            
         }
     }
 }

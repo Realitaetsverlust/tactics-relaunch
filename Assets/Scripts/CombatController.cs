@@ -10,8 +10,7 @@ using CharacterController = Characters.CharacterController;
 
 public class CombatController : MonoBehaviour {
     public static int gamePhase;
-
-    public static GameObject activeCharacter;
+    public GameObject currentCharacter;
     // 1 = Placement
     // 2 = Combat
     public TurnOrder turnOrder;
@@ -38,9 +37,13 @@ public class CombatController : MonoBehaviour {
         
     }
     
-    public void swapToNextCharacter() {
+    public void endTurnForCurrentCharacter() {
         GameObject nextChar = this.turnOrder.getNextCharacter();
         this._cameraController.setCameraToCharacter(nextChar);
+    }
+
+    public void initiateMovementForCurrentCharacter() {
+        
     }
 
     public void placeUnits(GameObject[] characters) {
@@ -58,8 +61,8 @@ public class CombatController : MonoBehaviour {
         Debug.Log("All units placed!");
 
         CombatController.gamePhase = 2;
-        
-        yield return new WaitForSeconds(0.1f);
+
+        this.endTurnForCurrentCharacter();
     }
 
     private IEnumerator _placeCharacterBeforeCombat(GameObject character) {

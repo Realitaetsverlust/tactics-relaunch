@@ -8,7 +8,7 @@ namespace Elements {
         }
         
         public void onMoveClick() {
-            
+            this._godObject.GetComponent<CombatController>().initiateMovementForCurrentCharacter();
         }
 
         public void onActionClick() {
@@ -16,7 +16,7 @@ namespace Elements {
         }
         
         public void onWaitClick() {
-            this._godObject.GetComponent<CombatController>().swapToNextCharacter();
+            this._godObject.GetComponent<CombatController>().endTurnForCurrentCharacter();
         }
     }
 }
