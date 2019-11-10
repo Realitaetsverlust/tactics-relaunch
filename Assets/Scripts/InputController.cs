@@ -10,9 +10,16 @@ public class InputController : MonoBehaviour
     private Ray _ray;
     private RaycastHit _hit;
     private readonly int _layerMask;
+    private Camera _camera;
+    private CameraController _cameraController;
 
     public InputController() {
         this._layerMask = 1 << 9;
+    }
+
+    public void Awake() {
+        this._camera = Camera.main;
+        this._cameraController = this._camera.GetComponent<CameraController>();
     }
 
     void Update() {
@@ -30,6 +37,19 @@ public class InputController : MonoBehaviour
             } else {
                 BaseCharacterStatPanel.hideCharacterPanel();
             }
+        }
+
+        this.handleKeystroke();
+    }
+
+    public void handleKeystroke() {
+        Debug.Log(CombatController.activeCharacter);
+        if(Input.GetKeyDown(KeyCode.Q)) {
+            this._cameraController.rotateLeft(CombatController.activeCharacter);
+        }
+        
+        if(Input.GetKeyDown(KeyCode.E)) {
+            this._cameraController.rotateRight(CombatController.activeCharacter);
         }
     }
 }
