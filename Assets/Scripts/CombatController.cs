@@ -13,14 +13,13 @@ public class CombatController : MonoBehaviour {
     public GameObject currentCharacter;
     // 1 = Placement
     // 2 = Combat
-    public TurnOrder turnOrder;
     private Camera _camera;
     private CameraController _cameraController;
 
     public void Start() {
         GameObject[] characters = GameObject.FindGameObjectsWithTag("combatCharacter");
         this.placeUnits(characters);
-        this.turnOrder = new TurnOrder(characters);
+        TurnOrder.buildCharacterList(characters);
         this._camera = Camera.main;
         if(this._camera != null) {
             this._cameraController = this._camera.GetComponent<CameraController>();
@@ -38,7 +37,7 @@ public class CombatController : MonoBehaviour {
     }
     
     public void endTurnForCurrentCharacter() {
-        GameObject nextChar = this.turnOrder.getNextCharacter();
+        GameObject nextChar = TurnOrder.getNextCharacter();
         this._cameraController.setCameraToCharacter(nextChar);
     }
 

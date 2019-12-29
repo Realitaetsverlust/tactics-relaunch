@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Elements;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Utils;
 
 public class InputController : MonoBehaviour
 {
@@ -43,13 +44,12 @@ public class InputController : MonoBehaviour
     }
 
     public void handleKeystroke() {
-        Debug.Log(CombatController.activeCharacter);
         if(Input.GetKeyDown(KeyCode.Q)) {
-            this._cameraController.rotateLeft(CombatController.activeCharacter);
+            this._cameraController.rotateLeft(TurnOrder.getActiveCharacter());
         }
         
         if(Input.GetKeyDown(KeyCode.E)) {
-            this._cameraController.rotateRight(CombatController.activeCharacter);
+            this._cameraController.rotateRight(TurnOrder.getActiveCharacter());
         }
     }
 }

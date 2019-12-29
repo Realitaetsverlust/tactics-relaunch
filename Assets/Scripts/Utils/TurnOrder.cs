@@ -5,30 +5,36 @@ using CharacterController = Characters.CharacterController;
 
 namespace Utils {
     public class TurnOrder {
-        private SortedDictionary<int, GameObject> _turnOrder;
-        private int _charactersInCombat;
-        private int _turn;
-
-        public TurnOrder(GameObject[] characters) {
-            this._turnOrder = new SortedDictionary<int, GameObject>(Comparer<int>.Create((x, y) => y.CompareTo(x)));
+        private static SortedDictionary<int, GameObject> _turnOrder;
+        private static int _charactersInCombat;
+        private static int _turn;
+        private static int _turnCount;
+        private static GameObject _activeCharacter;
+        public static void buildCharacterList(GameObject[] characters) {
+            TurnOrder._turnOrder = new SortedDictionary<int, GameObject>(Comparer<int>.Create((x, y) => y.CompareTo(x)));
             int charInit = 0;
 
             foreach(GameObject character in characters) {
                 charInit = character.GetComponent<CharacterController>().init;
-                this._turnOrder.Add(charInit, character);
+                TurnOrder._turnOrder.Add(charInit, character);
             }
 
-            this._charactersInCombat = this._turnOrder.Count;
+            TurnOrder._charactersInCombat = TurnOrder._turnOrder.Count;
         }
-        
-        public GameObject getNextCharacter() {
-            this._turn += 1;
 
-            if(this._turn > this._charactersInCombat) {
-                this._turn = 1;
+        public static GameObject getNextCharacter() {
+            TurnOrder._turn += 1;
+            TurnOrder._turnCount += 1;
+
+            if(TurnOrder._turn > TurnOrder._charactersInCombat) {
+                TurnOrder._turn = 1;
             }
 
-            return this._turnOrder.ElementAt(this._turn - 1).Value;
+            return (TurnOrder._activeCharacter = TurnOrder._turnOrder.ElementAt(TurnOrder._turn - 1).Value);
+        }
+
+        public static GameObject getActiveCharacter() {
+            return TurnOrder._activeCharacter;
         }
     }
 }
