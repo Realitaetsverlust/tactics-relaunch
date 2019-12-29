@@ -15,26 +15,17 @@ namespace Characters {
 		public int currentMp;
 		public int regenMp;
 		public int init;
-		public int maxAp;
-		public int currentAp;
-		public int regenAp;
 		private GameObject _baseCharacterStatPanel;
 		private GameObject _currentTile;
 
 		public void turnStart() {
 			this.calcAlteredStates();
-			this.regenerateAp(this.regenAp);
 			this.regenerateMp(this.regenMp);
 			this.regenerateHp(this.regenHp);
 		}
 
-		public void calcAlteredStates() { }
-
-		public void regenerateAp(int apGains) {
-			this.currentAp += apGains;
-			if(this.currentAp > this.maxAp) {
-				this.currentAp = this.maxAp;
-			}
+		public void calcAlteredStates() {
+			// stub lohl
 		}
 
 		public void regenerateMp(int mpGains) {
@@ -51,7 +42,9 @@ namespace Characters {
 			}
 		}
 
-		public void initiateDeath() { }
+		public void initiateDeath() {
+			// stub lohl
+		}
 
 		public void setCharacterToTile(GameObject tile) {
 			tile.GetComponent<GridElement>().setCharacterToThisTile(this._currentTile, this.gameObject);
