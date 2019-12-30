@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Elements.TileTypes;
 using UnityEngine;
 
 namespace Elements {
@@ -27,6 +28,8 @@ namespace Elements {
         private Material _movementIndicator;
 
         private GameObject _playerOnTile;
+
+        private TileType _tileType;
         
         public void Awake() {
             this._renderer = this.GetComponent<MeshRenderer>();
@@ -101,6 +104,20 @@ namespace Elements {
 
         public void hideIndicator() {
             this._indicator.SetActive(false);
+        }
+
+        public void setTileType(TileType tileType) {
+            this._tileType = tileType;
+            this.updateTile();
+        }
+
+        public void updateTile() {
+            this._top.GetComponent<Renderer>().material = this._tileType.tileMaterial;
+            this._bottom.GetComponent<Renderer>().material = this._tileType.tileMaterial;
+            this._north.GetComponent<Renderer>().material = this._tileType.tileMaterial;
+            this._south.GetComponent<Renderer>().material = this._tileType.tileMaterial;
+            this._east.GetComponent<Renderer>().material = this._tileType.tileMaterial;
+            this._west.GetComponent<Renderer>().material = this._tileType.tileMaterial;
         }
     }
 }

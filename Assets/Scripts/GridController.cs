@@ -11,10 +11,12 @@ public class GridController : MonoBehaviour {
 	private static GameObject _previousTile;
 	private GameObject _godObject;
 
-	public void Awake() {
+	public void Start() {
 		this._godObject = GameObject.Find("GodObject");
 		GridController._grid = GameObject.Find("terrainParent");
 		GridController._gridElements = new Dictionary<string, GameObject>();
+		
+		Debug.Log(GridController._grid.transform.childCount);
 
 		for(int index = 0; index < GridController._grid.transform.childCount; index++) {
 			Transform child = GridController._grid.transform.GetChild(index);
@@ -25,7 +27,7 @@ public class GridController : MonoBehaviour {
 	public static void markNewTileAsActive(string id) {
 		GridController._previousTile = GridController._activeTile;
 		GridController._activeTile = GridController.getElementById(id);
-
+		
 		if(GridController._previousTile != null) {
 			GridController._previousTile.GetComponent<GridElement>().unmarkAsActiveTile();
 		}

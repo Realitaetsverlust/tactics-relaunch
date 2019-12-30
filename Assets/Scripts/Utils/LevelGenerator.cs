@@ -6,13 +6,12 @@
 
 using System;
 using System.IO;
+using Elements;
+using Elements.TileTypes;
 using UnityEngine;
 
 namespace Utils {
-	[ExecuteInEditMode]
 	public class LevelGenerator : MonoBehaviour {
-
-		public Material grassMaterial;
 
 		private void Awake() {
 			string[] fileContent;
@@ -42,13 +41,14 @@ namespace Utils {
 			foreach(var line in fileContent) {
 				var heights = line.Split('|');
 				gridCounterVertical += 1;
-			
+				
 				foreach(var height in heights) {
 					gridCounterHorizontal += 1;
 					float elevationHeight = int.Parse(height);
 
-					GameObject gridElement = GameObject.Instantiate(gridElementPrefab, terrainParent.transform, true); 
-
+					GameObject gridElement = GameObject.Instantiate(gridElementPrefab, terrainParent.transform, true);
+					gridElement.GetComponent<GridElement>().setTileType(new Water());
+					
 					if(gridElement == null) {
 						throw new Exception("terrainElement could not be loaded from Prefabs. Aborting.");
 					}

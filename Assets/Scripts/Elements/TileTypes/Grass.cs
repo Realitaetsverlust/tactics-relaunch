@@ -2,9 +2,9 @@ using System;
 using UnityEngine;
 
 namespace Elements.TileTypes {
-	public class Grass : BaseTile {
+	public class Grass : TileType {
 		public Grass() : base() {
-			this.tileMaterial = Resources.Load(String.Concat(this.terrainFilepath, "Stylize_Grass")) as Material;
+			this.tileMaterial = this.getTerrainMaterial("Stylize_Grass");
 		}
 	}
 }

@@ -1,5 +1,5 @@
 namespace Elements.TileTypes {
-	public class Sand : BaseTile {
+	public class Sand : TileType {
 		public Sand() : base() {
 			
 		}

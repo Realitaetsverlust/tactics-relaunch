@@ -2,9 +2,9 @@ using System;
 using UnityEngine;
 
 namespace Elements.TileTypes {
-	public class Water : BaseTile {
+	public class Water : TileType {
 		public Water() : base() {
-			this.tileMaterial = Resources.Load(String.Concat(this.terrainFilepath, "Stylize_Water_diffuse")) as Material;
+			this.tileMaterial = Resources.Load(String.Concat(this.terrainFilepath, "Stylize Water Diffuse")) as Material;
 		}
 	}
 }
