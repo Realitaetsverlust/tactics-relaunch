@@ -108,9 +108,5 @@ namespace Elements {
             this._east.GetComponent<Renderer>().material = this._tileType.tileMaterial;
             this._west.GetComponent<Renderer>().material = this._tileType.tileMaterial;
         }
-
-        public bool hasIndicatorActive() {
-            return this._indicator.activeSelf;
-        }
     }
 }
