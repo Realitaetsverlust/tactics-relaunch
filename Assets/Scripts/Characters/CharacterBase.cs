@@ -15,13 +15,18 @@ namespace Characters {
 		public int currentMp;
 		public int regenMp;
 		public int init;
+		public int walkRange;
 		private GameObject _baseCharacterStatPanel;
 		private GameObject _currentTile;
+		public bool moved;
+		public bool tookAction;
 
 		public void turnStart() {
 			this.calcAlteredStates();
 			this.regenerateMp(this.regenMp);
 			this.regenerateHp(this.regenHp);
+			this.moved = false;
+			this.tookAction = false;
 		}
 
 		public void calcAlteredStates() {
@@ -43,7 +48,7 @@ namespace Characters {
 		}
 
 		public void initiateDeath() {
-			// stub lohl
+			// gesdorben wird ned. Wer stirbd fliegd
 		}
 
 		public void setCharacterToTile(GameObject tile) {

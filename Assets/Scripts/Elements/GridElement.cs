@@ -101,5 +101,13 @@ namespace Elements {
             Vector3 center = this._renderer.bounds.center;
             return new Vector3(center.x, this._height + 1.5f, center.z);
         }
+
+        public void displayIndicator(string typing) {
+            this._indicator.SetActive(true);
+        }
+
+        public void hideIndicator() {
+            this._indicator.SetActive(false);
+        }
     }
 }

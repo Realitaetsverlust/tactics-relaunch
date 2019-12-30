@@ -20,7 +20,7 @@ public class GridController : MonoBehaviour {
 			Transform child = GridController._grid.transform.GetChild(index);
 			GridController._gridElements.Add(child.name, child.gameObject);
 		}
-	}
+	}		
 
 	public static void markNewTileAsActive(string id) {
 		GridController._previousTile = GridController._activeTile;
@@ -42,7 +42,7 @@ public class GridController : MonoBehaviour {
 	}
 
 	public static GameObject getElementById(string id) {
-		if(GridController._gridElements[id] != null) {
+		if(GridController._gridElements.ContainsKey(id)) {
 			return GridController._gridElements[id];
 		}
 

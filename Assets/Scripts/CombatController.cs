@@ -42,7 +42,10 @@ public class CombatController : MonoBehaviour {
     }
 
     public void initiateMovementForCurrentCharacter() {
-        
+        CharacterController activeCharacter = TurnOrder.getActiveCharacter().GetComponent<CharacterController>();
+        HashSet<GameObject> foundRange = Rangefinder.findAllTilesInRange(activeCharacter.getCurrentTileOfCharacter(), 6);
+        Range rangeObject = new Range(foundRange, "walking");
+        rangeObject.colorRange();
     }
 
     public void placeUnits(GameObject[] characters) {
@@ -53,11 +56,8 @@ public class CombatController : MonoBehaviour {
         CombatController.gamePhase = 1;
 
         foreach(var character in characters) {
-            Debug.Log(String.Concat("Placing character: ", character.transform.name));
             yield return StartCoroutine(this._placeCharacterBeforeCombat(character));
         }
-
-        Debug.Log("All units placed!");
 
         CombatController.gamePhase = 2;
 
