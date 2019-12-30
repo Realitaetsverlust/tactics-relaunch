@@ -3,7 +3,6 @@ using System.Runtime.CompilerServices;
 using Characters;
 using UnityEngine;
 using UnityEngine.UI;
-using CharacterController = Characters.CharacterController;
 
 namespace Elements {
     public class BaseCharacterStatPanel : MonoBehaviour {
@@ -27,11 +26,11 @@ namespace Elements {
         }
 
         public static void showCharacterPanelForCharacter(GameObject character) {
-            BaseCharacterStatPanel.populateCharacterPanel(character.GetComponent<CharacterController>());
+            BaseCharacterStatPanel.populateCharacterPanel(character.GetComponent<CombatCharacterController>());
             BaseCharacterStatPanel.showCharacterPanel();
         }
 
-        private static void populateCharacterPanel(CharacterController character) {
+        private static void populateCharacterPanel(CombatCharacterController character) {
             BaseCharacterStatPanel._nameText.text = character.charName;
             BaseCharacterStatPanel._levelText.text = character.level.ToString();
             BaseCharacterStatPanel._hpText.text = String.Concat(character.currentHp.ToString(), "/", character.maxHp.ToString());

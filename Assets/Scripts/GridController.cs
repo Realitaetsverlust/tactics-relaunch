@@ -16,8 +16,6 @@ public class GridController : MonoBehaviour {
 		GridController._grid = GameObject.Find("terrainParent");
 		GridController._gridElements = new Dictionary<string, GameObject>();
 		
-		Debug.Log(GridController._grid.transform.childCount);
-
 		for(int index = 0; index < GridController._grid.transform.childCount; index++) {
 			Transform child = GridController._grid.transform.GetChild(index);
 			GridController._gridElements.Add(child.name, child.gameObject);

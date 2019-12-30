@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using Characters;
 using UnityEngine;
-using CharacterController = Characters.CharacterController;
 
 namespace Utils {
     public static class TurnOrder {
@@ -15,7 +15,7 @@ namespace Utils {
             int charInit = 0;
 
             foreach(GameObject character in characters) {
-                charInit = character.GetComponent<CharacterController>().init;
+                charInit = character.GetComponent<CombatCharacterController>().init;
                 TurnOrder._turnOrder.Add(charInit, character);
             }
 
@@ -35,6 +35,10 @@ namespace Utils {
 
         public static GameObject getActiveCharacter() {
             return TurnOrder._activeCharacter;
+        }
+
+        public static void setTurnOrderToIndex(int index) {
+            TurnOrder._activeCharacter = TurnOrder._turnOrder.ElementAt(TurnOrder._turn).Value;
         }
     }
 }

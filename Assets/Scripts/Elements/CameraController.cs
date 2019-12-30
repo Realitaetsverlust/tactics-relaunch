@@ -7,10 +7,8 @@ namespace Elements {
         public GameObject target;
         private Vector3 _mainCameraPosition;
         private float _mainCameraRotation;
-        private int _camDirection; // 0 = north; 1 = west; 2 = south; 3 = east
         
         private void Awake() {
-            this._camDirection = 0;
             this.main = Camera.main;
         }
 
@@ -27,7 +25,7 @@ namespace Elements {
         }
 
         public void rotateRight(GameObject character) {
-            this.transform.RotateAround (character.transform.position, Vector3.up, 90);
+            this.transform.RotateAround (character.transform.position, Vector3.up, -90);
         }
     }
 }

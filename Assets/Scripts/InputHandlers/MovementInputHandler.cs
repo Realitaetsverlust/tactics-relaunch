@@ -1,6 +1,6 @@
+using Characters;
 using Elements;
 using UnityEngine;
-using CharacterController = Characters.CharacterController;
 
 namespace Utils {
 	public class MovementInputHandler : MonoBehaviour {
@@ -28,10 +28,10 @@ namespace Utils {
 				this._ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         
 				if(Physics.Raycast(this._ray, out this._hit, float.PositiveInfinity, this._layerMask)) {
-					CharacterController charControl = TurnOrder.getActiveCharacter().GetComponent<CharacterController>();
+					CombatCharacterController charControl = TurnOrder.getActiveCharacter().GetComponent<CombatCharacterController>();
 					GameObject activeTile = GridController.getActiveTile();
 					if(Input.GetKeyDown(KeyCode.Mouse0)) {
-						if(this._currentRangeObject.isTileWithinRange(activeTile)) {
+						if(this._currentRangeObject.isTileWithinRange(activeTile) && activeTile.GetComponent<GridElement>().getCharacterOnThisTile() == null) {
 							charControl.setCharacterToTile(activeTile);
 							charControl.moved = true;
 							this.isMovementPhase = false;

@@ -1,7 +1,7 @@
 ﻿using Elements;
 
 namespace Characters {
-    public class CharacterController : CharacterBase
+    public class CombatCharacterController : CharacterBase
     {
         
     }
