@@ -25,7 +25,6 @@ namespace Elements {
         private GameObject _westMark;
 
         private GameObject _indicator;
-        private Material _movementIndicator;
 
         private GameObject _playerOnTile;
 
@@ -50,7 +49,6 @@ namespace Elements {
             this._westMark = this.transform.Find("mark/westMark").gameObject;
 
             this._indicator = this.transform.Find("indicator").gameObject;
-            this._movementIndicator = Resources.Load("Material/WalkRangeMaterial") as Material;
 
             this._playerOnTile = null;
         }
@@ -67,15 +65,6 @@ namespace Elements {
          */
         public void unmarkAsActiveTile() {
             this._mark.SetActive(false);
-        }
-
-        public void markAsWithinRange() {
-            this._indicator.GetComponent<Renderer>().material = this._movementIndicator;
-            this._indicator.SetActive(true);
-        }
-
-        public void unmarkAsWithinRange() {
-            this._indicator.SetActive(false);
         }
 
         public void setCharacterToThisTile(GameObject oldTile, GameObject player) {
@@ -118,6 +107,10 @@ namespace Elements {
             this._south.GetComponent<Renderer>().material = this._tileType.tileMaterial;
             this._east.GetComponent<Renderer>().material = this._tileType.tileMaterial;
             this._west.GetComponent<Renderer>().material = this._tileType.tileMaterial;
+        }
+
+        public bool hasIndicatorActive() {
+            return this._indicator.activeSelf;
         }
     }
 }

@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using Elements;
-using UnityEditor;
 using UnityEngine;
 using Utils;
 using CharacterController = Characters.CharacterController;
 
 public class CombatController : MonoBehaviour {
     public static int gamePhase;
+    private GameObject _godObject;
     public GameObject currentCharacter;
     // 1 = Placement
     // 2 = Combat
@@ -17,6 +15,7 @@ public class CombatController : MonoBehaviour {
     private CameraController _cameraController;
 
     public void Start() {
+        this._godObject = GameObject.Find("GodObject");
         GameObject[] characters = GameObject.FindGameObjectsWithTag("combatCharacter");
         this.placeUnits(characters);
         TurnOrder.buildCharacterList(characters);
@@ -43,10 +42,15 @@ public class CombatController : MonoBehaviour {
 
     public void initiateMovementForCurrentCharacter() {
         CharacterController activeCharacter = TurnOrder.getActiveCharacter().GetComponent<CharacterController>();
-        HashSet<GameObject> foundRange = Rangefinder.findAllTilesInRange(activeCharacter.getCurrentTileOfCharacter(), 6);
+        HashSet<GameObject> foundRange = Rangefinder.findAllTilesInRange(
+            activeCharacter.getCurrentTileOfCharacter(), 
+            activeCharacter.GetComponent<CharacterController>().walkRange
+            );
         Range rangeObject = new Range(foundRange, "walking");
+        this._godObject.GetComponent<MovementInputHandler>().setCurrentRangeObject(rangeObject);
         rangeObject.colorRange();
     }
+
 
     public void placeUnits(GameObject[] characters) {
         this.StartCoroutine(this._startPlacementPhase(characters));

@@ -4,7 +4,7 @@ using UnityEngine;
 using CharacterController = Characters.CharacterController;
 
 namespace Utils {
-    public class TurnOrder {
+    public static class TurnOrder {
         private static SortedDictionary<int, GameObject> _turnOrder;
         private static int _charactersInCombat;
         private static int _turn;

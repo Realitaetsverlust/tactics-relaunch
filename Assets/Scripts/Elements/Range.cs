@@ -22,5 +22,9 @@ namespace Elements {
 				tile.GetComponent<GridElement>().hideIndicator();
 			}        
 		}
+
+		public bool isTileWithinRange(GameObject tile) {
+			return this._range.Contains(tile);
+		}
 	}
 }
