@@ -29,7 +29,7 @@ namespace Utils {
             if(TurnOrder._turn > TurnOrder._charactersInCombat) {
                 TurnOrder._turn = 1;
             }
-
+            
             return (TurnOrder._activeCharacter = TurnOrder._turnOrder.ElementAt(TurnOrder._turn - 1).Value);
         }
 

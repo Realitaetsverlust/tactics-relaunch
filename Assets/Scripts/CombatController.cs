@@ -12,6 +12,7 @@ public class CombatController : MonoBehaviour {
     // 2 = Combat
     private Camera _camera;
     private CameraController _cameraController;
+    public static bool characterPlacementDone = false;
 
     public void Start() {
         this._godObject = GameObject.Find("GodObject");
@@ -26,6 +27,10 @@ public class CombatController : MonoBehaviour {
 
     public void Update() {
         if(CombatController.gamePhase == 2) {
+            if(CombatController.characterPlacementDone) {
+                this._cameraController.setCameraToCharacter(TurnOrder.getActiveCharacter());
+                CombatController.characterPlacementDone = false;
+            }
             this._combatBase();
         }
     }

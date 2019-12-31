@@ -6,7 +6,8 @@ namespace Elements.TileTypes {
 		public bool passable;
 		public string terrainType;
 		public float causedDamagePerTurn;
-		public Material tileMaterial;
+		protected Material tileMaterial;
+		protected readonly string fixMeMaterial = "Material/FixMeMaterial";
 		
 		protected readonly string terrainFilepath = "Material/Stylize Terrain Texture/Materials/";
 
@@ -19,7 +20,18 @@ namespace Elements.TileTypes {
 			if(customTerrainFilepath != null) {
 				return Resources.Load(String.Concat(customTerrainFilepath, materialName)) as Material;
 			}
+
+			Material sourceMaterial = Resources.Load(String.Concat(this.terrainFilepath, materialName)) as Material;
+			
 			return Resources.Load(String.Concat(this.terrainFilepath, materialName)) as Material;
+		}
+
+		public Material getTerrainMaterial() {
+			if(this.tileMaterial == null) {
+				return Resources.Load(this.fixMeMaterial) as Material;
+			}
+			
+			return this.tileMaterial;
 		}
 	}
 }

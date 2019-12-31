@@ -19,6 +19,7 @@ namespace InputHandlers {
 
 			CombatController.gamePhase = 2;
 
+			CombatController.characterPlacementDone = true;
 			TurnOrder.setTurnOrderToIndex(0);
 		}
 

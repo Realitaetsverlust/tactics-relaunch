@@ -38,16 +38,20 @@ namespace Utils {
 		
 			terrainParent.transform.position = new Vector3(0, 0, 0);
 		
-			foreach(var line in fileContent) {
-				var heights = line.Split('|');
+			foreach(string line in fileContent) {
+				String[] map = line.Split('|');
 				gridCounterVertical += 1;
 				
-				foreach(var height in heights) {
+				foreach(string tileInfo in map) {
+					String[] tileInfoSplit = tileInfo.Split(',');
+					String height = tileInfoSplit[0];
+					String terrain = tileInfoSplit[1];
+					
 					gridCounterHorizontal += 1;
 					float elevationHeight = int.Parse(height);
 
 					GameObject gridElement = GameObject.Instantiate(gridElementPrefab, terrainParent.transform, true);
-					gridElement.GetComponent<GridElement>().setTileType(new Water());
+					gridElement.GetComponent<GridElement>().setTileType(this.getTileType(terrain));
 					
 					if(gridElement == null) {
 						throw new Exception("terrainElement could not be loaded from Prefabs. Aborting.");
@@ -65,6 +69,39 @@ namespace Utils {
 				positionZ -= 1;
 				positionX = 0;
 			}
+		}
+
+		private TileType getTileType(String terrainType) {
+			if(terrainType == "oc") {
+				return new Ocean();
+			}
+			if(terrainType == "wa") {
+				return new Water();
+			}
+			if(terrainType == "ro") {
+				return new Rock();
+			}
+			if(terrainType == "sd") {
+				return new Sand();
+			}
+			if(terrainType == "mg") {
+				return new Magma();
+			}
+			if(terrainType == "so") {
+				return new Snow();
+			}
+			if(terrainType == "di") {
+				return new Dirt();
+			}
+			if(terrainType == "wo") {
+				return new Wood();
+			}
+			if (terrainType == "gr") {
+				return new Grass();
+			}
+			
+			//default
+			return new Grass();
 		}
 	}
 }

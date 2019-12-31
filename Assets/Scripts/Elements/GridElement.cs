@@ -101,12 +101,16 @@ namespace Elements {
         }
 
         public void updateTile() {
-            this._top.GetComponent<Renderer>().material = this._tileType.tileMaterial;
-            this._bottom.GetComponent<Renderer>().material = this._tileType.tileMaterial;
-            this._north.GetComponent<Renderer>().material = this._tileType.tileMaterial;
-            this._south.GetComponent<Renderer>().material = this._tileType.tileMaterial;
-            this._east.GetComponent<Renderer>().material = this._tileType.tileMaterial;
-            this._west.GetComponent<Renderer>().material = this._tileType.tileMaterial;
+            this._top.GetComponent<Renderer>().material = this._tileType.getTerrainMaterial();
+            this._bottom.GetComponent<Renderer>().material = this._tileType.getTerrainMaterial();
+
+            Material tiledMaterial = this._tileType.getTerrainMaterial();
+            tiledMaterial.mainTextureScale = new Vector2(this._height * 10f, this._height * 10f);
+            
+            this._north.GetComponent<Renderer>().material = tiledMaterial;
+            this._south.GetComponent<Renderer>().material = tiledMaterial;
+            this._east.GetComponent<Renderer>().material = tiledMaterial;
+            this._west.GetComponent<Renderer>().material = tiledMaterial;
         }
     }
 }
