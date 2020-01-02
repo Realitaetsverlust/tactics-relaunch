@@ -6,16 +6,8 @@ using UnityEngine;
 
 namespace Utils {
     public class Rangefinder : MonoBehaviour {
-        
-        public bool waitActive;
-
-        public IEnumerable<WaitForSeconds> wait() {
-            this.waitActive = true;
-            yield return new WaitForSeconds(2.0f);
-            this.waitActive = false;
-        }
-        
         public static HashSet<GameObject> findAllTilesInRange(GameObject tile, int range) {
+            Debug.Log(range);
             return _findAllTilesInRangeWithObject(tile, range, new HashSet<GameObject>());
         }
 
@@ -26,7 +18,7 @@ namespace Utils {
             }
 
             HashSet<GameObject> foundTiles = findAdjacentTiles(targetTile);
-
+            
             foreach(GameObject foundTile in foundTiles) {
                 areaOfEffect.Add(foundTile);
             }

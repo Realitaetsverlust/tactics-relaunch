@@ -10,6 +10,10 @@ namespace Elements {
 			this._range = range;
 			this._typing = typing;
 		}
+
+		public int getRangeElementCount() {
+			return this._range.Count;
+		}
 		
 		public void colorRange() {
 			foreach(GameObject tile in this._range) {

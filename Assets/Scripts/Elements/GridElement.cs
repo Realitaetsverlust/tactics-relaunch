@@ -7,16 +7,20 @@ using UnityEngine;
 namespace Elements {
     public class GridElement : MonoBehaviour {
         private MeshRenderer _renderer;
-        private float _height;
+        private int _height;
 
         private GameObject _cube;
        
         private GameObject _top;
         private GameObject _bottom;
         private GameObject _north;
+        private List<GameObject> _northPanels = new List<GameObject>();
         private GameObject _east;
+        private List<GameObject> _eastPanels = new List<GameObject>();
         private GameObject _south;
+        private List<GameObject> _southPanels = new List<GameObject>();
         private GameObject _west;
+        private List<GameObject> _westPanels = new List<GameObject>();
 
         private GameObject _mark;
         private GameObject _northMark;
@@ -32,16 +36,38 @@ namespace Elements {
         
         public void Awake() {
             this._renderer = this.GetComponent<MeshRenderer>();
-            this._height = this.transform.localScale.y;
             
             this._cube = this.transform.Find("cube").gameObject;
             this._top = this.transform.Find("cube/top").gameObject;
             this._bottom = this.transform.Find("cube/bottom").gameObject;
             this._north = this.transform.Find("cube/north").gameObject;
+            
+            for(int index = 0; index < this._north.transform.childCount; index++) {
+                Transform child = this._north.transform.GetChild(index);
+                this._northPanels.Add(child.gameObject);
+            }
+            
             this._east = this.transform.Find("cube/east").gameObject;
-            this._south = this.transform.Find("cube/south").gameObject;
-            this._west = this.transform.Find("cube/west").gameObject;
+                        
+            for(int index = 0; index < this._east.transform.childCount; index++) {
+                Transform child = this._east.transform.GetChild(index);
+                this._eastPanels.Add(child.gameObject);
+            }
 
+            this._south = this.transform.Find("cube/south").gameObject;
+                        
+            for(int index = 0; index < this._south.transform.childCount; index++) {
+                Transform child = this._south.transform.GetChild(index);
+                this._southPanels.Add(child.gameObject);
+            }
+
+            this._west = this.transform.Find("cube/west").gameObject;
+                        
+            for(int index = 0; index < this._west.transform.childCount; index++) {
+                Transform child = this._west.transform.GetChild(index);
+                this._westPanels.Add(child.gameObject);
+            }
+            
             this._mark = this.transform.Find("mark").gameObject;
             this._northMark = this.transform.Find("mark/northMark").gameObject;
             this._eastMark = this.transform.Find("mark/eastMark").gameObject;
@@ -100,17 +126,33 @@ namespace Elements {
             this.updateTile();
         }
 
+        public void setHeight(int height) {
+            this._height = height;
+        }
+
+        public int getHeight() {
+            return this._height;
+        }
+
         public void updateTile() {
             this._top.GetComponent<Renderer>().material = this._tileType.getTerrainMaterial();
             this._bottom.GetComponent<Renderer>().material = this._tileType.getTerrainMaterial();
 
-            Material tiledMaterial = this._tileType.getTerrainMaterial();
-            tiledMaterial.mainTextureScale = new Vector2(this._height * 10f, this._height * 10f);
+            foreach(GameObject panel in this._northPanels) {
+                panel.GetComponent<Renderer>().material = this._tileType.getTerrainMaterial();
+            }
             
-            this._north.GetComponent<Renderer>().material = tiledMaterial;
-            this._south.GetComponent<Renderer>().material = tiledMaterial;
-            this._east.GetComponent<Renderer>().material = tiledMaterial;
-            this._west.GetComponent<Renderer>().material = tiledMaterial;
+            foreach(GameObject panel in this._southPanels) {
+                panel.GetComponent<Renderer>().material = this._tileType.getTerrainMaterial();
+            }
+            
+            foreach(GameObject panel in this._eastPanels) {
+                panel.GetComponent<Renderer>().material = this._tileType.getTerrainMaterial();
+            }
+            
+            foreach(GameObject panel in this._westPanels) {
+                panel.GetComponent<Renderer>().material = this._tileType.getTerrainMaterial();
+            }
         }
     }
 }

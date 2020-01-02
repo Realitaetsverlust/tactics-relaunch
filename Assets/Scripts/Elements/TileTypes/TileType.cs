@@ -22,8 +22,9 @@ namespace Elements.TileTypes {
 			}
 
 			Material sourceMaterial = Resources.Load(String.Concat(this.terrainFilepath, materialName)) as Material;
+			sourceMaterial.mainTexture.wrapMode = TextureWrapMode.Repeat;
 			
-			return Resources.Load(String.Concat(this.terrainFilepath, materialName)) as Material;
+			return sourceMaterial;
 		}
 
 		public Material getTerrainMaterial() {

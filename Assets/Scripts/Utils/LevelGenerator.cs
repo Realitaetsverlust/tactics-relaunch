@@ -44,14 +44,14 @@ namespace Utils {
 				
 				foreach(string tileInfo in map) {
 					String[] tileInfoSplit = tileInfo.Split(',');
-					String height = tileInfoSplit[0];
+					int height = int.Parse(tileInfoSplit[0]);
 					String terrain = tileInfoSplit[1];
 					
 					gridCounterHorizontal += 1;
-					float elevationHeight = int.Parse(height);
-
-					GameObject gridElement = GameObject.Instantiate(gridElementPrefab, terrainParent.transform, true);
+					
+					GameObject gridElement = GameObject.Instantiate(Resources.Load(String.Concat("Prefabs/terrainElementH", height)) as GameObject, terrainParent.transform, true);
 					gridElement.GetComponent<GridElement>().setTileType(this.getTileType(terrain));
+					gridElement.GetComponent<GridElement>().setHeight(height);
 					
 					if(gridElement == null) {
 						throw new Exception("terrainElement could not be loaded from Prefabs. Aborting.");
@@ -59,7 +59,6 @@ namespace Utils {
 
 					gridElement.transform.name = String.Concat(gridCounterVertical, "-", gridCounterHorizontal);
 					gridElement.transform.position = new Vector3(positionX, 1f, positionZ);
-					gridElement.transform.localScale = new Vector3(1f, elevationHeight, 1f);
 
 					positionX += 1;
 				}
