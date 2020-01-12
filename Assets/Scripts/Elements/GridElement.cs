@@ -32,7 +32,7 @@ namespace Elements {
 
         private GameObject _playerOnTile;
 
-        private TileType _tileType;
+        public TileType tileType;
         
         public void Awake() {
             this._renderer = this.GetComponent<MeshRenderer>();
@@ -122,7 +122,7 @@ namespace Elements {
         }
 
         public void setTileType(TileType tileType) {
-            this._tileType = tileType;
+            this.tileType = tileType;
             this.updateTile();
         }
 
@@ -135,23 +135,23 @@ namespace Elements {
         }
 
         public void updateTile() {
-            this._top.GetComponent<Renderer>().material = this._tileType.getTerrainMaterial();
-            this._bottom.GetComponent<Renderer>().material = this._tileType.getTerrainMaterial();
+            this._top.GetComponent<Renderer>().material = this.tileType.getTerrainMaterial();
+            this._bottom.GetComponent<Renderer>().material = this.tileType.getTerrainMaterial();
 
             foreach(GameObject panel in this._northPanels) {
-                panel.GetComponent<Renderer>().material = this._tileType.getTerrainMaterial();
+                panel.GetComponent<Renderer>().material = this.tileType.getTerrainMaterial();
             }
             
             foreach(GameObject panel in this._southPanels) {
-                panel.GetComponent<Renderer>().material = this._tileType.getTerrainMaterial();
+                panel.GetComponent<Renderer>().material = this.tileType.getTerrainMaterial();
             }
             
             foreach(GameObject panel in this._eastPanels) {
-                panel.GetComponent<Renderer>().material = this._tileType.getTerrainMaterial();
+                panel.GetComponent<Renderer>().material = this.tileType.getTerrainMaterial();
             }
             
             foreach(GameObject panel in this._westPanels) {
-                panel.GetComponent<Renderer>().material = this._tileType.getTerrainMaterial();
+                panel.GetComponent<Renderer>().material = this.tileType.getTerrainMaterial();
             }
         }
     }

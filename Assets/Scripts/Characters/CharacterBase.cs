@@ -1,5 +1,6 @@
 ﻿using System;
 using Elements;
+using Elements.TileTypes;
 using UnityEditor;
 using UnityEngine;
 
@@ -23,6 +24,7 @@ namespace Characters {
 
 		public void turnStart() {
 			this.calcAlteredStates();
+			this.calcTerrainStatus();
 			this.regenerateMp(this.regenMp);
 			this.regenerateHp(this.regenHp);
 			this.moved = false;
@@ -31,6 +33,11 @@ namespace Characters {
 
 		public void calcAlteredStates() {
 			// stub lohl
+		}
+
+		public void calcTerrainStatus() {
+			TileType tileType = this._currentTile.GetComponent<GridElement>().tileType;
+			this.subtractHp(tileType.causedDamagePerTurn);
 		}
 
 		public void regenerateMp(int mpGains) {
@@ -47,8 +54,28 @@ namespace Characters {
 			}
 		}
 
+		public int damageCalculation(int damage) {
+			// lots of complicated stuff here
+
+			int causedDamage = 10;
+			
+			return causedDamage < 0 ? 0 : causedDamage;
+		}
+
+		public void subtractHp(int damage) {
+			this.currentHp -= damage;
+			if(this.currentHp < 0) {
+				this.currentHp = 0;
+				this.initiateDeath();
+			}
+		}
+
 		public void initiateDeath() {
 			// gesdorben wird ned. Wer stirbd fliegd
+		}
+
+		public void revive() {
+			
 		}
 
 		public void setCharacterToTile(GameObject tile) {
@@ -56,7 +83,7 @@ namespace Characters {
 			this._currentTile = tile;
 			this.transform.position = tile.GetComponent<GridElement>().getCenterPositionForCharacter();
 		}
-
+	
 		public void fillBaseCharacterStatPanel() {
 			BaseCharacterStatPanel.showCharacterPanelForCharacter(this.gameObject);
 		}

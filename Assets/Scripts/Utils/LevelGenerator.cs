@@ -19,7 +19,6 @@ namespace Utils {
 			float positionZ = 0;
 			int gridCounterHorizontal = 0;
 			int gridCounterVertical = 0;
-			GameObject gridElementPrefab = Resources.Load("Prefabs/terrainElement") as GameObject;
 
 			if(GameObject.Find("terrainParent") != null) {
 				Console.WriteLine("elevationParent already exists in scene - aborting.");

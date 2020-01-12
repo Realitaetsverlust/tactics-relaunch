@@ -5,7 +5,8 @@ namespace Elements.TileTypes {
 	public class TileType {
 		public bool passable;
 		public string terrainType;
-		public float causedDamagePerTurn;
+		public int causedDamagePerTurn;
+		public int causedHealingPerTurn;
 		protected Material tileMaterial;
 		protected readonly string fixMeMaterial = "Material/FixMeMaterial";
 		
@@ -13,6 +14,7 @@ namespace Elements.TileTypes {
 
 		protected TileType() {
 			this.causedDamagePerTurn = 0;
+			this.causedHealingPerTurn = 0;
 			this.passable = true;
 		}
 

@@ -28,6 +28,7 @@ namespace Elements {
 		}
 
 		public bool isTileWithinRange(GameObject tile) {
+			//TODO: Performance - Is it expensive to use contain with an entire object? ID-Comparison would be enough imo
 			return this._range.Contains(tile);
 		}
 	}
