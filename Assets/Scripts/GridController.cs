@@ -9,10 +9,10 @@ public class GridController : MonoBehaviour {
 	private static Dictionary<String, GameObject> _gridElements;
 	private static GameObject _activeTile;
 	private static GameObject _previousTile;
-	private GameObject _godObject;
+	private static GameObject _godObject;
 
-	public void Start() {
-		this._godObject = GameObject.Find("GodObject");
+	public static void loadGridSystem() {
+		GridController._godObject = GameObject.Find("GodObject");
 		GridController._grid = GameObject.Find("terrainParent");
 		GridController._gridElements = new Dictionary<string, GameObject>();
 		
@@ -20,7 +20,7 @@ public class GridController : MonoBehaviour {
 			Transform child = GridController._grid.transform.GetChild(index);
 			GridController._gridElements.Add(child.name, child.gameObject);
 		}
-	}		
+	}
 
 	public static void markNewTileAsActive(string id) {
 		GridController._previousTile = GridController._activeTile;
@@ -42,6 +42,10 @@ public class GridController : MonoBehaviour {
 	}
 
 	public static GameObject getElementById(string id) {
+		if(GridController._gridElements == null) {
+			GridController.loadGridSystem();
+		}
+		
 		if(GridController._gridElements.ContainsKey(id)) {
 			return GridController._gridElements[id];
 		}

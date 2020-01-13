@@ -41,7 +41,7 @@ namespace Utils {
 					CombatCharacterController charControl = TurnOrder.getActiveCharacter().GetComponent<CombatCharacterController>();
 					GameObject activeTile = GridController.getActiveTile();
 					if(Input.GetKeyDown(KeyCode.Mouse0)) {
-						if(this._currentRangeObject.isTileWithinRange(activeTile) && activeTile.GetComponent<GridElement>().getCharacterOnThisTile() == null) {
+						if(this._currentRangeObject.isTileWithinRange(activeTile) && activeTile.GetComponent<GridElement>().tileType.passable == true && activeTile.GetComponent<GridElement>().getCharacterOnThisTile() == null) {
 							charControl.setCharacterToTile(activeTile);
 							charControl.moved = true;
 							this.isMovementPhase = false;

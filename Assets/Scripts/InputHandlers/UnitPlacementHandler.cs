@@ -26,6 +26,7 @@ namespace InputHandlers {
 		private IEnumerator _placeCharacterBeforeCombat(GameObject character) {
 			while(Input.GetKeyDown(KeyCode.Mouse0) == false || 
 				  GridController.getActiveTile() == null ||
+				  GridController.getActiveTile().GetComponent<GridElement>().tileType.passable == false ||
 				  GridController.getActiveTile().GetComponent<GridElement>().getCharacterOnThisTile() != null) {
 				yield return null;
 			}
