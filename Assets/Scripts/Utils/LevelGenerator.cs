@@ -21,7 +21,7 @@ namespace Utils {
 			int gridCounterVertical = 0;
 
 			if(GameObject.Find("terrainParent") != null) {
-				Console.WriteLine("elevationParent already exists in scene - aborting.");
+				Console.WriteLine("terrainParent already exists in scene - aborting.");
 				return;
 			}
 		
