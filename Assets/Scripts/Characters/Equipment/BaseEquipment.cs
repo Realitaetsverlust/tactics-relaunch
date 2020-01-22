@@ -3,6 +3,7 @@ namespace Characters.Equipment {
         public string name;
         public string description;
         
+        public int baseLevel;
         public int plusLevel;
 
         public int evasion;

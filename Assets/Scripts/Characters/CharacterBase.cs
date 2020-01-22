@@ -1,7 +1,14 @@
 ﻿using System;
+using Characters.Equipment.Armor.Boots;
+using Characters.Equipment.Armor.Chest;
+using Characters.Equipment.Armor.Hands;
+using Characters.Equipment.Armor.Helmet;
+using Characters.Equipment.Armor.Legs;
+using Characters.Equipment.Weapons.Melee.Cut.Katanas;
 using Characters.Utils;
 using Elements;
 using Elements.TileTypes;
+using Moves.Magical.Firemage;
 using UnityEditor;
 using UnityEngine;
 
@@ -21,14 +28,25 @@ namespace Characters {
 		public int walkRange;
 
 		//gameplay elements
-		public Equipmentset equipmentset;
-		public Moveset moveset;
+		public Equipmentset equipmentset = new Equipmentset();
+		public Moveset moveset = new Moveset();
 		
 		//logical necessities
 		private GameObject _baseCharacterStatPanel;
 		private GameObject _currentTile;
 		public bool moved;
 		public bool tookAction;
+
+		public CharacterBase() {
+			this.equipmentset.mainHand = new TamashiNoHakai();
+			this.equipmentset.boots = new LeatherBoots();
+			this.equipmentset.legs = new LeatherTrousers();
+			this.equipmentset.helmet = new LeatherHelmet();
+			this.equipmentset.chest = new LeatherJacket();
+			this.equipmentset.hands = new LeatherGloves();
+			
+			this.moveset.addToMovelist(new Ember());
+		}
 
 		public void turnStart() {
 			this.calcAlteredStates();
