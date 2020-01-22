@@ -1,4 +1,4 @@
-namespace DefaultNamespace {
+namespace Characters.Classes.Physical {
 	public class Ranger : ClassBase {
 		public Ranger() : base() {
 			this.name = "Ranger";

@@ -1,4 +1,5 @@
 ﻿using System;
+using Characters.Utils;
 using Elements;
 using Elements.TileTypes;
 using UnityEditor;
@@ -6,6 +7,7 @@ using UnityEngine;
 
 namespace Characters {
 	public class CharacterBase : MonoBehaviour {
+		//stats
 		public string charName;
 		public int level;
 		public int exp;
@@ -17,6 +19,12 @@ namespace Characters {
 		public int regenMp;
 		public int init;
 		public int walkRange;
+
+		//gameplay elements
+		public Equipmentset equipmentset;
+		public Moveset moveset;
+		
+		//logical necessities
 		private GameObject _baseCharacterStatPanel;
 		private GameObject _currentTile;
 		public bool moved;
