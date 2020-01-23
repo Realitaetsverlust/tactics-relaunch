@@ -1,3 +1,5 @@
+using Characters.Moves;
+
 namespace Moves.Magical.Enhancer {
 	public class Protect : BaseMove {
 		public Protect() : base() {

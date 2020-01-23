@@ -1,3 +1,5 @@
+using Characters.Moves;
+
 namespace Moves.Enhancer {
 	public class Enrage : BaseMove {
 		public Enrage() {

@@ -1,22 +1,31 @@
-using System.Runtime.CompilerServices;
+using System;
 
-namespace Moves {
+namespace Characters.Moves {
 	public abstract class BaseMove {
-		protected int baseDamage;
-		protected int damageType; //1 = phys; 2 = mag; 3 = heal; 4 = statusheal; 5 = terraineffect
-		protected int range;
-		protected int mpCost;
-		protected string name;
-		protected string description;
+		public int baseDamage;
+		public int damageType; //1 = phys; 2 = mag; 3 = heal; 4 = statusheal; 5 = terraineffect
+		public int range;
+		public int mpCost;
+		private string _name;
 
-		public BaseMove() {
-			this.setName();
+		public string name {
+			get {
+				if(this._name == null) {
+					return this.GetType().Name;
+				}
+				
+				return this._name;
+			}
+			
+			set => this._name = value;
 		}
 
-		protected void setName() {
-			foreach(char character in this.GetType().Name.ToCharArray()) {
-				
-			} 
+		public string description;
+		public readonly string job;
+
+		protected BaseMove() {
+			Type type = this.GetType(); 
+			this.job = type.Namespace.Substring(type.Namespace.LastIndexOf('.') + 1);
 		}
 	}
 }

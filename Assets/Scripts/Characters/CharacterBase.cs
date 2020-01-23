@@ -5,9 +5,11 @@ using Characters.Equipment.Armor.Hands;
 using Characters.Equipment.Armor.Helmet;
 using Characters.Equipment.Armor.Legs;
 using Characters.Equipment.Weapons.Melee.Cut.Katanas;
+using Characters.Moves.Magical.Firemage;
 using Characters.Utils;
 using Elements;
 using Elements.TileTypes;
+using Moves;
 using Moves.Magical.Firemage;
 using UnityEditor;
 using UnityEngine;
@@ -46,6 +48,7 @@ namespace Characters {
 			this.equipmentset.hands = new LeatherGloves();
 			
 			this.moveset.addToMovelist(new Ember());
+			this.moveset.addToMovelist(new InfernalBlaze());
 		}
 
 		public void turnStart() {

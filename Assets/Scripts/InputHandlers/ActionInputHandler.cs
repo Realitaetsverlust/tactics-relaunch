@@ -1,3 +1,7 @@
+using System.Collections.Generic;
+using Characters;
+using Characters.Moves;
+using Characters.Utils;
 using Elements;
 using UnityEngine;
 using UnityEngine.UI;
@@ -44,9 +48,13 @@ namespace Utils {
 		public void onClick() {
 			this._godObject.GetComponent<CombatController>().initiateMovementForCurrentCharacter();
 		}
+		
+		public void populateActionInput() {
+			Moveset moveset = TurnOrder.getActiveCharacter().GetComponent<CombatCharacterController>().moveset;
 
-		public void buildMoveListForCharacter() {
-			
+			foreach(KeyValuePair<string, Dictionary<string, BaseMove>> jobSelection in moveset.movelist) {
+				
+			}
 		}
 
 		public void disableButton() {
