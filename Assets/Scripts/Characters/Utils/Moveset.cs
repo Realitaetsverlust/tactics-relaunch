@@ -19,7 +19,7 @@ namespace Characters.Utils {
 
 		public void addToMovelist(BaseMove move) {
 			if(!this._movelist.ContainsKey(move.job)) {
-				this._movelist.Add(move.job, new Dictionary<string, BaseMove>());
+				this._movelist[move.job] = new Dictionary<string, BaseMove>();
 			}
 			
 			this._movelist[move.job].Add(move.name, move);
