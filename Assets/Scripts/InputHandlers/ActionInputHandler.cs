@@ -5,8 +5,9 @@ using Characters.Utils;
 using Elements;
 using UnityEngine;
 using UnityEngine.UI;
+using Utils;
 
-namespace Utils {
+namespace InputHandlers {
 	public class ActionInputHandler : MonoBehaviour {
 		private GameObject _godObject;
 		private Button _button;

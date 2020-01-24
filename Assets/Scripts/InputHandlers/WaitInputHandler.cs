@@ -2,7 +2,7 @@ using Elements;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Utils {
+namespace InputHandlers {
 	public class WaitInputHandler : MonoBehaviour {
 		private GameObject _godObject;
 		private Button _button;

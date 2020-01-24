@@ -1,10 +1,10 @@
-using System;
 using Characters;
 using Elements;
 using UnityEngine;
 using UnityEngine.UI;
+using Utils;
 
-namespace Utils {
+namespace InputHandlers {
 	public class MovementInputHandler : MonoBehaviour {
 		private GameObject _godObject;
 		private Button _button;
