@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Characters;
 using Characters.Moves;
 using Characters.Utils;
@@ -15,9 +16,16 @@ namespace InputHandlers {
         }
 
         public void populateMoveSelectionInput() {
+            //Clear the panel from all objects
+            GameObject parentPanel = GameObject.Find("BaseMoveSelectionPanel");
+            List<GameObject> children = (from Transform child in parentPanel.transform select child.gameObject).ToList();
+            children.ForEach(Object.Destroy);
+            
+            //for some reason, destroying the object does not set the childCount immediatly. So I'm using DetachChildren which resets the childcount to 0.
+            parentPanel.transform.DetachChildren();
+            
             string job = this.name;
             Moveset moveset = TurnOrder.getActiveCharacter().GetComponent<CombatCharacterController>().moveset;
-            GameObject parentPanel = GameObject.Find("BaseMoveSelectionPanel");
 
             foreach(KeyValuePair<string, BaseMove> jobSelection in moveset.movelist[job]) {
                 string moveName = jobSelection.Key;
@@ -27,7 +35,7 @@ namespace InputHandlers {
                 button.GetComponentInChildren<Text>().text = moveName;
             }
             
-            parentPanel.GetComponent<PanelResizer>().resizePanel();
+            parentPanel.GetComponent<PanelManager>().resizePanel();
         }
     }
 }

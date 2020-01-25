@@ -63,7 +63,7 @@ namespace InputHandlers {
 				button.GetComponentInChildren<Text>().text = menuJobTab;
 			}
 			
-			parentPanel.GetComponent<PanelResizer>().resizePanel();
+			parentPanel.GetComponent<PanelManager>().resizePanel();
 		}
 
 		public void disableButton() {
