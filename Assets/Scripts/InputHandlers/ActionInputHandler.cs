@@ -53,17 +53,17 @@ namespace InputHandlers {
 		public void populateActionInput() {
 			Moveset moveset = TurnOrder.getActiveCharacter().GetComponent<CombatCharacterController>().moveset;
 
+			GameObject parentPanel = GameObject.Find("BaseActionCommandPanel");
+			
 			foreach(KeyValuePair<string, Dictionary<string, BaseMove>> jobSelection in moveset.movelist) {
 				string menuJobTab = jobSelection.Key;
 
-				GameObject button = GameObject.Instantiate(Resources.Load("Prefabs/UI/ActionClassSelectionButton") as GameObject, GameObject.Find("BaseActionCommandPanel").transform);
+				GameObject button = GameObject.Instantiate(Resources.Load("Prefabs/UI/ActionClassSelectionButton") as GameObject, parentPanel.transform);
 				button.name = menuJobTab;
 				button.GetComponentInChildren<Text>().text = menuJobTab;
-				
-				foreach(KeyValuePair<string,BaseMove> baseMove in jobSelection.Value) {
-					
-				}
 			}
+			
+			parentPanel.GetComponent<PanelResizer>().resizePanel();
 		}
 
 		public void disableButton() {
