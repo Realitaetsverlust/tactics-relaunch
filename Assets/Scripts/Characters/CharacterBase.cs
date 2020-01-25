@@ -5,6 +5,7 @@ using Characters.Equipment.Armor.Hands;
 using Characters.Equipment.Armor.Helmet;
 using Characters.Equipment.Armor.Legs;
 using Characters.Equipment.Weapons.Melee.Cut.Katanas;
+using Characters.Moves.Magical.Cleric;
 using Characters.Moves.Magical.Firemage;
 using Characters.Utils;
 using Elements;
@@ -49,6 +50,9 @@ namespace Characters {
 			
 			this.moveset.addToMovelist(new Ember());
 			this.moveset.addToMovelist(new InfernalBlaze());
+			this.moveset.addToMovelist(new Fire());
+			this.moveset.addToMovelist(new Firestorm());
+			this.moveset.addToMovelist(new Devotion());
 		}
 
 		public void turnStart() {

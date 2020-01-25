@@ -56,7 +56,7 @@ namespace InputHandlers {
 			foreach(KeyValuePair<string, Dictionary<string, BaseMove>> jobSelection in moveset.movelist) {
 				string menuJobTab = jobSelection.Key;
 
-				GameObject button = GameObject.Instantiate(Resources.Load("Prefabs/UI/MoveSelectionButton") as GameObject, GameObject.Find("BaseActionCommandPanel").transform);
+				GameObject button = GameObject.Instantiate(Resources.Load("Prefabs/UI/ActionClassSelectionButton") as GameObject, GameObject.Find("BaseActionCommandPanel").transform);
 				button.name = menuJobTab;
 				button.GetComponentInChildren<Text>().text = menuJobTab;
 				
