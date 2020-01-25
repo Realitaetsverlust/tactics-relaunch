@@ -1,18 +1,12 @@
-﻿using System;
-using Characters.Equipment.Armor.Boots;
+﻿using Characters.Equipment.Armor.Boots;
 using Characters.Equipment.Armor.Chest;
 using Characters.Equipment.Armor.Hands;
 using Characters.Equipment.Armor.Helmet;
 using Characters.Equipment.Armor.Legs;
 using Characters.Equipment.Weapons.Melee.Cut.Katanas;
-using Characters.Moves.Magical.Cleric;
-using Characters.Moves.Magical.Firemage;
 using Characters.Utils;
 using Elements;
 using Elements.TileTypes;
-using Moves;
-using Moves.Magical.Firemage;
-using UnityEditor;
 using UnityEngine;
 
 namespace Characters {
@@ -41,18 +35,18 @@ namespace Characters {
 		public bool tookAction;
 
 		public CharacterBase() {
-			this.equipmentset.mainHand = new TamashiNoHakai();
-			this.equipmentset.boots = new LeatherBoots();
-			this.equipmentset.legs = new LeatherTrousers();
-			this.equipmentset.helmet = new LeatherHelmet();
-			this.equipmentset.chest = new LeatherJacket();
-			this.equipmentset.hands = new LeatherGloves();
+			this.equipmentset.mainHand = EquipmentFactory.getWeapon("TamashiNoHakai");
+			this.equipmentset.boots = EquipmentFactory.getArmor("LeatherBoots");
+			this.equipmentset.legs = EquipmentFactory.getArmor("LeatherTrousers");
+			this.equipmentset.helmet = EquipmentFactory.getArmor("LeatherHelmet");
+			this.equipmentset.chest = EquipmentFactory.getArmor("LeatherJacket");
+			this.equipmentset.hands = EquipmentFactory.getArmor("LeatherGloves");
 			
-			this.moveset.addToMovelist(new Ember());
-			this.moveset.addToMovelist(new InfernalBlaze());
-			this.moveset.addToMovelist(new Fire());
-			this.moveset.addToMovelist(new Firestorm());
-			this.moveset.addToMovelist(new Devotion());
+			this.moveset.addToMovelist(AbilityFactory.getAbility("Ember"));
+			this.moveset.addToMovelist(AbilityFactory.getAbility("InfernalBlaze"));
+			this.moveset.addToMovelist(AbilityFactory.getAbility("Devotion"));
+			this.moveset.addToMovelist(AbilityFactory.getAbility("Flashflood"));
+			this.moveset.addToMovelist(AbilityFactory.getAbility("Enrage"));
 		}
 
 		public void turnStart() {

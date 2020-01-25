@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Characters.Moves;
+using Characters.Abilities;
 
 namespace Characters.Utils {
 	public class Moveset {

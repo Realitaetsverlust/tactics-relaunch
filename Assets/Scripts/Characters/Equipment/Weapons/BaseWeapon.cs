@@ -1,5 +1,3 @@
-using Characters.Utils;
-
 namespace Characters.Equipment.Weapons {
     public class BaseWeapon : BaseEquipment {
         public int damage;

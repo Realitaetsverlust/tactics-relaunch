@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Characters;
-using Characters.Moves;
+using Characters.Abilities;
 using Characters.Utils;
 using Elements;
 using UnityEngine;

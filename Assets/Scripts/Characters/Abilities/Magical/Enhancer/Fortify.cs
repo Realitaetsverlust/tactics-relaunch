@@ -1,5 +1,5 @@
-namespace Moves.Magical.Enhancer {
-	public class Fortify : BaseNeutralMove{
+namespace Characters.Abilities.Magical.Enhancer {
+	public class Fortify : BaseMove{
 		public Fortify() : base() {
 			this.description = "Enhances physical defense";
 		}

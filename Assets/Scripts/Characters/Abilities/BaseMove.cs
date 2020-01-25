@@ -1,6 +1,6 @@
 using System;
 
-namespace Characters.Moves {
+namespace Characters.Abilities {
 	public abstract class BaseMove {
 		public int baseDamage;
 		public int damageType; //1 = phys; 2 = mag; 3 = heal; 4 = statusheal; 5 = terraineffect
