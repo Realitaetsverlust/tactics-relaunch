@@ -1,6 +1,4 @@
-using Characters.Equipment.Weapons;
-
-namespace Characters.Weapons.Melee.Stab.Spear {
+namespace Characters.Equipment.Weapons.Melee.Stab.Spear {
     public class Trident : BaseWeapon {
         public Trident() : base() {
             this.name = "Trident";

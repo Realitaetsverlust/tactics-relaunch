@@ -1,7 +1,5 @@
-using Characters.Classes;
-
-namespace Characters.Weapons.Melee.Cut.Swords {
-    public class Estoc : ClassBase {
+namespace Characters.Equipment.Weapons.Melee.Cut.Swords {
+    public class Estoc : BaseWeapon {
         public Estoc() : base() {
             
         }
