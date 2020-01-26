@@ -38,10 +38,6 @@ namespace Characters.Utils {
                     }
                 }
             }
-
-            foreach(KeyValuePair<string,BaseWeapon> keyValuePair in WeaponFactory.WeaponList) {
-                Debug.Log(keyValuePair);
-            }
         }
     }
 }

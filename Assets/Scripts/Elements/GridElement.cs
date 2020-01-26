@@ -114,6 +114,8 @@ namespace Elements {
         }
 
         public void displayIndicator(string typing) {
+            this.setIndicatorMaterial(typing);
+            
             this._indicator.SetActive(true);
         }
 
@@ -121,8 +123,8 @@ namespace Elements {
             this._indicator.SetActive(false);
         }
 
-        public void setTileType(TileType tileType) {
-            this.tileType = tileType;
+        public void setTileType(TileType tileTyping) {
+            this.tileType = tileTyping;
             this.updateTile();
         }
 
@@ -152,6 +154,17 @@ namespace Elements {
             
             foreach(GameObject panel in this._westPanels) {
                 panel.GetComponent<Renderer>().material = this.tileType.getTerrainMaterial();
+            }
+        }
+
+        private void setIndicatorMaterial(string typing) {
+            switch(typing) {
+                case "movement":
+                    this._indicator.GetComponent<Renderer>().material = Resources.Load("Material/MovementRangeMaterial") as Material;
+                    break;
+                case "ability":
+                    this._indicator.GetComponent<Renderer>().material = Resources.Load("Material/AbilityRangeMaterial") as Material;
+                    break;
             }
         }
     }

@@ -1,7 +1,8 @@
 using System;
+using UnityEngine;
 
 namespace Characters.Abilities {
-	public abstract class BaseMove {
+	public abstract class BaseAbility {
 		public int baseDamage;
 		public int damageType; //1 = phys; 2 = mag; 3 = heal; 4 = statusheal; 5 = terraineffect
 		public int range;
@@ -23,8 +24,9 @@ namespace Characters.Abilities {
 		public string description;
 		public readonly string job;
 
-		protected BaseMove() {
-			Type type = this.GetType(); 
+		protected BaseAbility() {
+			Type type = this.GetType();
+			this.range = 1;
 			this.job = type.Namespace.Substring(type.Namespace.LastIndexOf('.') + 1);
 		}
 	}

@@ -7,7 +7,6 @@ using UnityEngine;
 namespace Utils {
     public class Rangefinder : MonoBehaviour {
         public static HashSet<GameObject> findAllTilesInRange(GameObject tile, int range) {
-            Debug.Log(range);
             return _findAllTilesInRangeWithObject(tile, range, new HashSet<GameObject>());
         }
 

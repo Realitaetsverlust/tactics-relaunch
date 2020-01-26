@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Characters.Utils {
     public static class AbilityFactory {
-        private static readonly Dictionary<string, BaseMove> AbilityList = new Dictionary<string, BaseMove>(); 
+        private static readonly Dictionary<string, BaseAbility> AbilityList = new Dictionary<string, BaseAbility>(); 
         
         static AbilityFactory() {
             DirectoryInfo moveDirectory = new DirectoryInfo("Assets/Scripts/Characters/Abilities");
@@ -29,13 +29,13 @@ namespace Characters.Utils {
                     foreach(FileInfo abilityFilePath in classFolder.GetFiles("*.cs")) {
                         string abilityName = String.Concat(classNamespace, Path.GetFileNameWithoutExtension(abilityFilePath.Name));
                         
-                        AbilityFactory.AbilityList.Add(Path.GetFileNameWithoutExtension(abilityFilePath.Name), Activator.CreateInstance(Type.GetType(abilityName) ?? throw new Exception(abilityName)) as BaseMove);
+                        AbilityFactory.AbilityList.Add(Path.GetFileNameWithoutExtension(abilityFilePath.Name), Activator.CreateInstance(Type.GetType(abilityName) ?? throw new Exception(abilityName)) as BaseAbility);
                     }
                 }
             }
         }
 
-        public static BaseMove getAbility(string name) {
+        public static BaseAbility getAbility(string name) {
             return AbilityFactory.AbilityList[name];
         }
     }

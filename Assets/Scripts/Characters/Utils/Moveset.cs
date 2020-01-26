@@ -4,11 +4,11 @@ using Characters.Abilities;
 
 namespace Characters.Utils {
 	public class Moveset {
-		private Dictionary<string, Dictionary<string, BaseMove>> _movelist = new Dictionary<string, Dictionary<string, BaseMove>>();
+		private Dictionary<string, Dictionary<string, BaseAbility>> _movelist = new Dictionary<string, Dictionary<string, BaseAbility>>();
 
-		public Dictionary<string, Dictionary<string, BaseMove>> movelist => this._movelist;
+		public Dictionary<string, Dictionary<string, BaseAbility>> movelist => this._movelist;
 
-		public void removeFromMovelist(BaseMove move) {
+		public void removeFromMovelist(BaseAbility move) {
 			this._movelist[move.job].Remove(move.name);
 
 			if(this._movelist[move.job].Count == 0) {
@@ -17,9 +17,9 @@ namespace Characters.Utils {
 
 		}
 
-		public void addToMovelist(BaseMove move) {
+		public void addToMovelist(BaseAbility move) {
 			if(!this._movelist.ContainsKey(move.job)) {
-				this._movelist[move.job] = new Dictionary<string, BaseMove>();
+				this._movelist[move.job] = new Dictionary<string, BaseAbility>();
 			}
 			
 			this._movelist[move.job].Add(move.name, move);

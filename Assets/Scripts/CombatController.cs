@@ -28,6 +28,7 @@ public class CombatController : MonoBehaviour {
     public void Update() {
         if(CombatController.gamePhase == 2) {
             if(CombatController.characterPlacementDone) {
+                GameObject.Find("BaseCommandPanel").GetComponent<PanelManager>().showPanel();
                 this._cameraController.setCameraToCharacter(TurnOrder.getActiveCharacter());
                 CombatController.characterPlacementDone = false;
             }

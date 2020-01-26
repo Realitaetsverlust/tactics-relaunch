@@ -27,7 +27,7 @@ namespace InputHandlers {
             string job = this.name;
             Moveset moveset = TurnOrder.getActiveCharacter().GetComponent<CombatCharacterController>().moveset;
 
-            foreach(KeyValuePair<string, BaseMove> jobSelection in moveset.movelist[job]) {
+            foreach(KeyValuePair<string, BaseAbility> jobSelection in moveset.movelist[job]) {
                 string moveName = jobSelection.Key;
 
                 GameObject button = GameObject.Instantiate(Resources.Load("Prefabs/UI/MoveSelectionButton") as GameObject, parentPanel.transform);
