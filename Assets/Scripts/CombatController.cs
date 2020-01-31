@@ -55,6 +55,7 @@ public class CombatController : MonoBehaviour {
     public void endTurnForCurrentCharacter() {
         GameObject nextChar = TurnOrder.getNextCharacter();
         this._godObject.GetComponent<MovementInputHandler>().enableMoveButton();
+        this._godObject.GetComponent<ActionInputHandler>().enableButton();
         this._cameraController.setCameraToCharacter(nextChar);
         nextChar.GetComponent<CombatCharacterController>().turnStart();
     }
