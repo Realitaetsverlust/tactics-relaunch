@@ -98,7 +98,7 @@ namespace Characters {
 		}
 
 		public void initiateDeath() {
-			// gesdorben wird ned. Wer stirbd fliegd
+			this.gameObject.transform.rotation = new Quaternion(90f, 0, 0, 0);
 		}
 
 		public void revive() {
