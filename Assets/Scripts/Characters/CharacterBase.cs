@@ -23,6 +23,7 @@ namespace Characters {
 		public int regenMp;
 		public int init;
 		public int walkRange;
+		public bool isAttackable = true;
 
 		//gameplay elements
 		public Equipmentset equipmentset = new Equipmentset();
@@ -98,11 +99,12 @@ namespace Characters {
 		}
 
 		public void initiateDeath() {
-			this.gameObject.transform.rotation = new Quaternion(90f, 0, 0, 0);
+			this.isAttackable = false;
+			this.gameObject.transform.eulerAngles = new Vector3(90f, 0, 0);
 		}
 
 		public void revive() {
-			
+			this.isAttackable = true;
 		}
 
 		public void setCharacterToTile(GameObject tile) {
