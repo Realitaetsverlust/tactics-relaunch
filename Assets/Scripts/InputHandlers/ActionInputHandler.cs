@@ -20,8 +20,6 @@ namespace InputHandlers {
 		private Camera _camera;
 		private CameraController _cameraController;
 
-		private Range _currentRangeObject;
-		
 		public ActionInputHandler() {
 			this._layerMask = 1 << 9;
 		}
@@ -32,7 +30,6 @@ namespace InputHandlers {
 		}
 
 		public void setCurrentRangeObject(Range rangeObject) {
-			this._currentRangeObject = rangeObject;
 			this.isActionTargetSelectionPhase = true;
 		}
 

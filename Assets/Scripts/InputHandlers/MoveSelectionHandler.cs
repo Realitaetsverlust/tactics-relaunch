@@ -38,7 +38,7 @@ namespace InputHandlers {
                     CombatCharacterController charControl = TurnOrder.getActiveCharacter().GetComponent<CombatCharacterController>();
                     if(Input.GetKeyDown(KeyCode.Mouse0)) {
                         GameObject activeTile = GridController.getActiveTile();
-                        if(this._abilityRangeSelection.isTileWithinRange(activeTile) && activeTile.GetComponent<GridElement>().getCharacterOnThisTile() != null) {
+                        if(this._abilityRangeSelection.isTileWithinRange(activeTile) && activeTile.GetComponent<GridElement>().getCharacterOnThisTile() != null && activeTile.GetComponent<GridElement>().getCharacterOnThisTile().GetComponent<CombatCharacterController>().isAttackable == true) {
                             GameObject targetPlayer = activeTile.GetComponent<GridElement>().getCharacterOnThisTile();
                             targetPlayer.GetComponent<CombatCharacterController>().subtractHp(this._ability.baseDamage);
                             this._combatUi.GetComponent<CanvasGroup>().alpha = 1;
