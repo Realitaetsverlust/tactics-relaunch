@@ -23,6 +23,7 @@ public class CombatController : MonoBehaviour {
         if(this._camera != null) {
             this._cameraController = this._camera.GetComponent<CameraController>();
         }
+
     }
 
     public void Update() {

@@ -1,13 +1,9 @@
-﻿using Characters.Equipment.Armor.Boots;
-using Characters.Equipment.Armor.Chest;
-using Characters.Equipment.Armor.Hands;
-using Characters.Equipment.Armor.Helmet;
-using Characters.Equipment.Armor.Legs;
-using Characters.Equipment.Weapons.Melee.Cut.Katanas;
-using Characters.Utils;
+﻿using Characters.Utils;
 using Elements;
 using Elements.TileTypes;
+using TMPro;
 using UnityEngine;
+using Utils;
 
 namespace Characters {
 	public class CharacterBase : MonoBehaviour {
@@ -92,6 +88,7 @@ namespace Characters {
 
 		public void subtractHp(int damage) {
 			this.currentHp -= damage;
+			DamagePopupController.createDamageText(damage, this.gameObject.transform);
 			if(this.currentHp < 0) {
 				this.currentHp = 0;
 				this.initiateDeath();

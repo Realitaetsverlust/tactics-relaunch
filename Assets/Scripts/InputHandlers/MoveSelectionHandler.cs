@@ -41,6 +41,7 @@ namespace InputHandlers {
                         if(this._abilityRangeSelection.isTileWithinRange(activeTile) && activeTile.GetComponent<GridElement>().getCharacterOnThisTile() != null && activeTile.GetComponent<GridElement>().getCharacterOnThisTile().GetComponent<CombatCharacterController>().isAttackable == true) {
                             GameObject targetPlayer = activeTile.GetComponent<GridElement>().getCharacterOnThisTile();
                             targetPlayer.GetComponent<CombatCharacterController>().subtractHp(this._ability.baseDamage);
+                            
                             this._combatUi.GetComponent<CanvasGroup>().alpha = 1;
                             this._abilityRangeSelection.hideRange();
                             this._moveIsSelected = false;
