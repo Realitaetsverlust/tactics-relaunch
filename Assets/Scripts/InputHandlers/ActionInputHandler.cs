@@ -1,66 +1,54 @@
-using System.Collections.Generic;
+/*using System.Collections.Generic;
+using System.Linq;
 using Characters;
 using Characters.Abilities;
 using Characters.Utils;
 using Elements;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
 
 namespace InputHandlers {
 	public class ActionInputHandler : MonoBehaviour {
-		private GameObject _godObject;
+		private GameObject _parentPanel;
 		private Button _button;
-		
 		public bool isActionTargetSelectionPhase;
-		
-		private Ray _ray;
-		private RaycastHit _hit;
-		private readonly int _layerMask;
-		private Camera _camera;
-		private CameraController _cameraController;
-
-		public ActionInputHandler() {
-			this._layerMask = 1 << 9;
-		}
+		private CombatUiHandler _combatUiHandler;
 		
 		public void Start() {
-			this._godObject = GameObject.Find("GodObject");
+			this._parentPanel = GameObject.Find("BaseActionCommandPanel");
 			this._button = GameObject.Find("ActionButton").GetComponent<Button>();
+			this._combatUiHandler = GameObject.Find("CombatUI").GetComponent<CombatUiHandler>();
 		}
 
 		public void setCurrentRangeObject(Range rangeObject) {
 			this.isActionTargetSelectionPhase = true;
 		}
 
-		void Update() {
-			if(this.isActionTargetSelectionPhase) {
-				this._ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        
-				if(Physics.Raycast(this._ray, out this._hit, float.PositiveInfinity, this._layerMask)) {
-					
-				}
-			}
-		}
-		
 		public void onClick() {
+			this._combatUiHandler.step = 2;
 			this.populateActionInput();
 		}
 		
 		public void populateActionInput() {
 			Moveset moveset = TurnOrder.getActiveCharacter().GetComponent<CombatCharacterController>().moveset;
-
-			GameObject parentPanel = GameObject.Find("BaseActionCommandPanel");
 			
+			List<GameObject> children = (from Transform child in this.gameObject.transform select child.gameObject).ToList();
+			children.ForEach(Object.Destroy);
+            
+			//for some reason, destroying the object does not set the childCount immediately. So I'm using DetachChildren which resets the childcount to 0.
+			this.gameObject.transform.DetachChildren();
+
 			foreach(KeyValuePair<string, Dictionary<string, BaseAbility>> jobSelection in moveset.movelist) {
 				string menuJobTab = jobSelection.Key;
 
-				GameObject button = GameObject.Instantiate(Resources.Load("Prefabs/UI/ActionClassSelectionButton") as GameObject, parentPanel.transform);
+				GameObject button = GameObject.Instantiate(Resources.Load("Prefabs/UI/ActionClassSelectionButton") as GameObject, this._parentPanel.transform);
 				button.name = menuJobTab;
 				button.GetComponentInChildren<Text>().text = menuJobTab;
 			}
 			
-			parentPanel.GetComponent<PanelManager>().resizePanel();
+			this._parentPanel.GetComponent<PanelManager>().resizePanel();
 		}
 
 		public void disableButton() {
@@ -73,4 +61,4 @@ namespace InputHandlers {
 			this._button.enabled = true;
 		}
 	}
-}
+}*/

@@ -17,8 +17,16 @@ namespace Characters {
 		public int maxMp;
 		public int currentMp;
 		public int regenMp;
-		public int init;
 		public int walkRange;
+		public int physAtk;
+		public int magAtk;
+		public int hitrate;
+		public int physResist;
+		public int magResist;
+		public int evasion;
+		public int init;
+		public int luck;
+
 		public bool isAttackable = true;
 
 		//gameplay elements

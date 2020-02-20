@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 1769981005300652820}
   - component: {fileID: 1769981005300652823}
   - component: {fileID: 1769981005300652822}
-  - component: {fileID: 4383089308621018362}
+  - component: {fileID: 3537613565834970942}
   m_Layer: 5
-  m_Name: MoveSelectionButton
+  m_Name: ActionSelectionButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,8 +120,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4383089308621018362}
-        m_TargetAssemblyTypeName: InputHandlers.MoveSelectionHandler, Assembly-CSharp
+      - m_Target: {fileID: 3537613565834970942}
+        m_TargetAssemblyTypeName: UI.BaseButton, Assembly-CSharp
         m_MethodName: onClick
         m_Mode: 1
         m_Arguments:
@@ -132,7 +132,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4383089308621018362
+--- !u!114 &3537613565834970942
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1769981005300652816}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12574102f94edff49bf25ae5151c30e8, type: 3}
+  m_Script: {fileID: 11500000, guid: f8383bfea3cd8b34c864d47fd61e29fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1769981005918975952

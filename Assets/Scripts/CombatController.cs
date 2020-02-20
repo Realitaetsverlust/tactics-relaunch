@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Characters;
+using Characters.Abilities;
 using Elements;
 using InputHandlers;
 using UnityEngine;
@@ -56,8 +57,21 @@ public class CombatController : MonoBehaviour {
     public void endTurnForCurrentCharacter() {
         GameObject nextChar = TurnOrder.getNextCharacter();
         this._godObject.GetComponent<MovementInputHandler>().enableMoveButton();
-        this._godObject.GetComponent<ActionInputHandler>().enableButton();
+        //this._godObject.GetComponent<ActionInputHandler>().enableButton();
         this._cameraController.setCameraToCharacter(nextChar);
         nextChar.GetComponent<CombatCharacterController>().turnStart();
+    }
+
+    public static void handleAbilityUsage(BaseAbility ability, GameObject target) {
+        GameObject caster = TurnOrder.getActiveCharacter();
+        AbilityEffects abilityEffects = ability.getEffectsOfAbility();
+
+        if(abilityEffects.damage >= 0) {
+            DamageCalculator.calculateDamage(caster, target, abilityEffects);
+        }
+
+        if(abilityEffects.heal >= 0) {
+            
+        }
     }
 }

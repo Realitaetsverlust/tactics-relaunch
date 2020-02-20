@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Characters;
 using Elements;
@@ -8,6 +9,12 @@ namespace InputHandlers {
 	public class UnitPlacementHandler : MonoBehaviour {
 		public void placeUnits(GameObject[] characters) {
 			this.StartCoroutine(this._startPlacementPhase(characters));
+		}
+
+		public void Update() {
+			if(CombatController.gamePhase == 1) {
+				Raycaster.castRay(1 << 9);
+			}
 		}
 
 		private IEnumerator _startPlacementPhase(GameObject[] characters) {

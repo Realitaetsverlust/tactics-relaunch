@@ -1,9 +1,11 @@
-﻿using System;
+﻿/*
+using System;
 using System.Runtime.InteropServices;
 using Characters;
 using Characters.Abilities;
 using Characters.Utils;
 using Elements;
+using UI;
 using UnityEngine;
 using Utils;
 
@@ -11,25 +13,25 @@ namespace InputHandlers {
     public class MoveSelectionHandler : MonoBehaviour {
         private GameObject _godObject;
         private bool _moveIsSelected = false;
-        private GameObject _combatUi;
         private BaseAbility _ability;
         private Range _abilityRangeSelection;
         private RaycastHit _hit;
         private int _layerMask;
+        private CombatUiHandler _combatUiHandler;
 
         public MoveSelectionHandler() {
             this._layerMask = 1 << 9;
         }
 
         public void Start() {
-            this._combatUi = GameObject.Find("CombatUI");
+            this._combatUiHandler = GameObject.Find("CombatUI").GetComponent<CombatUiHandler>();
             this._godObject = GameObject.Find("GodObject");
         }
 
         public void Update() {
             if(this._ability != null && this._ability.GetType().Name == this.gameObject.name && this._moveIsSelected) {
                 if(Input.GetKeyDown(KeyCode.Escape)) {
-                    this._combatUi.GetComponent<CanvasGroup>().alpha = 1;
+                    this._combatUiHandler.showCombatUi();
                     this._abilityRangeSelection.hideRange();
                     this._moveIsSelected = false;
                 }
@@ -42,7 +44,7 @@ namespace InputHandlers {
                             GameObject targetPlayer = activeTile.GetComponent<GridElement>().getCharacterOnThisTile();
                             targetPlayer.GetComponent<CombatCharacterController>().subtractHp(this._ability.baseDamage);
                             
-                            this._combatUi.GetComponent<CanvasGroup>().alpha = 1;
+                            this._combatUiHandler.displayCommandStep();
                             this._abilityRangeSelection.hideRange();
                             this._moveIsSelected = false;
                             this._godObject.GetComponent<ActionInputHandler>().disableButton();
@@ -53,7 +55,7 @@ namespace InputHandlers {
         }
         
         public void onClick() {
-            this._combatUi.GetComponent<CanvasGroup>().alpha = 0;
+            this._combatUiHandler.hideCombatUi();
             
             this._ability = AbilityFactory.getAbility(this.name);
 
@@ -63,3 +65,4 @@ namespace InputHandlers {
         }
     }
 }
+*/

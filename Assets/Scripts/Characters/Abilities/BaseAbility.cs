@@ -4,7 +4,6 @@ using UnityEngine;
 namespace Characters.Abilities {
 	public abstract class BaseAbility {
 		public int baseDamage;
-		public int damageType; //1 = phys; 2 = mag; 3 = heal; 4 = statusheal; 5 = terraineffect
 		public int range;
 		public int mpCost;
 		private string _name;
@@ -25,9 +24,13 @@ namespace Characters.Abilities {
 		public readonly string job;
 
 		protected BaseAbility() {
-			Type type = this.GetType();
 			this.range = 1;
+			Type type = this.GetType();
 			this.job = type.Namespace.Substring(type.Namespace.LastIndexOf('.') + 1);
+		}
+
+		public AbilityEffects getEffectsOfAbility() {
+			return new AbilityEffects();
 		}
 	}
 }
