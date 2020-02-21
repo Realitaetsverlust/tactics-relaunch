@@ -14,6 +14,7 @@ public class CombatController : MonoBehaviour {
     private Camera _camera;
     private CameraController _cameraController;
     public static bool characterPlacementDone = false;
+    public readonly static string HINT_NOTIFICATION = "LMP_331";
 
     public void Start() {
         this._godObject = GameObject.Find("GodObject");

@@ -26,15 +26,15 @@ namespace UI {
         public void Update() {
             if(this.targetMode) {
                 Raycaster.castRay(this.layerMask);
-            }
+                
+                if(Input.GetKeyDown(KeyCode.Escape)) {
+                    this.targetMode = false;
+                }
 
-            if(Input.GetKey(KeyCode.Escape)) {
-                this.targetMode = false;
-            }
-
-            if(Input.GetKey(KeyCode.Mouse0)) {
-                GameObject target = GridController.getActiveTile().GetComponent<GridElement>().getCharacterOnThisTile();
-                CombatController.handleAbilityUsage(this._ability, target);
+                if(Input.GetKeyDown(KeyCode.Mouse0)) {
+                    GameObject target = GridController.getActiveTile().GetComponent<GridElement>().getCharacterOnThisTile();
+                    CombatController.handleAbilityUsage(this._ability, target);
+                }
             }
         }
 

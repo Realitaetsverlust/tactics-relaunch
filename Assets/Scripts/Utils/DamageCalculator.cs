@@ -29,9 +29,17 @@ namespace Utils {
             
             //caster.getStatModifiersForAtk();
 
+            if(targetResist <= 0) {
+                targetResist = 1;
+            }
+            
+            if(casterPower <= 0) {
+                casterPower = 1;
+            }
+
             calculatedDamage = (abilityBasePower * casterPower / targetResist) / 100;
             
-            return 1;
+            return calculatedDamage;
         }
     }
 }

@@ -238,8 +238,15 @@ MonoBehaviour:
   maxMp: 110
   currentMp: 85
   regenMp: 0
-  init: 200
   walkRange: 5
+  physAtk: 0
+  magAtk: 0
+  hitrate: 0
+  physResist: 0
+  magResist: 0
+  evasion: 0
+  init: 200
+  luck: 0
   isAttackable: 1
   moved: 0
   tookAction: 0
@@ -270,21 +277,21 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 192772555}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 329435626}
   - {fileID: 1188636188}
   - {fileID: 247318315}
-  m_Father: {fileID: 990024725}
+  m_Father: {fileID: 1774556702}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -50, y: 36}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0.000030517578}
   m_SizeDelta: {x: 300, y: 400}
-  m_Pivot: {x: 1, y: 0}
+  m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &192772557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -387,8 +394,15 @@ MonoBehaviour:
   maxMp: 65
   currentMp: 65
   regenMp: 3
-  init: 110
   walkRange: 5
+  physAtk: 0
+  magAtk: 0
+  hitrate: 0
+  physResist: 0
+  magResist: 0
+  evasion: 0
+  init: 110
+  luck: 0
   isAttackable: 1
   moved: 0
   tookAction: 0
@@ -611,7 +625,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4827c1ddb36497590dc059db0c9ae96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActionPhase: 0
 --- !u!1 &329435625
 GameObject:
   m_ObjectHideFlags: 0
@@ -947,7 +960,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 639fc2fcbebe454ea302972938c55978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActionTargetSelectionPhase: 0
 --- !u!114 &380042648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1241,8 +1253,15 @@ MonoBehaviour:
   maxMp: 160
   currentMp: 13
   regenMp: 0
-  init: 215
   walkRange: 6
+  physAtk: 0
+  magAtk: 0
+  hitrate: 0
+  physResist: 0
+  magResist: 0
+  evasion: 0
+  init: 215
+  luck: 0
   isAttackable: 1
   moved: 0
   tookAction: 0
@@ -1538,8 +1557,15 @@ MonoBehaviour:
   maxMp: 150
   currentMp: 125
   regenMp: 6
-  init: 190
   walkRange: 5
+  physAtk: 0
+  magAtk: 0
+  hitrate: 0
+  physResist: 0
+  magResist: 0
+  evasion: 0
+  init: 190
+  luck: 0
   isAttackable: 1
   moved: 0
   tookAction: 0
@@ -1710,9 +1736,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 192772556}
-  - {fileID: 1321366801}
-  - {fileID: 1495637580}
+  - {fileID: 1774556702}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2013,6 +2037,7 @@ GameObject:
   - component: {fileID: 1188636190}
   - component: {fileID: 1188636189}
   - component: {fileID: 1188636192}
+  - component: {fileID: 1188636193}
   m_Layer: 5
   m_Name: ActionButton
   m_TagString: Untagged
@@ -2085,8 +2110,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1188636192}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 1188636193}
+        m_TargetAssemblyTypeName: UI.BaseActionButtonHandler, Assembly-CSharp
         m_MethodName: onClick
         m_Mode: 1
         m_Arguments:
@@ -2149,7 +2174,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 639fc2fcbebe454ea302972938c55978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActionTargetSelectionPhase: 0
+--- !u!114 &1188636193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188636187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4d7065b07c4e3340afd408364ee1118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1321366800
 GameObject:
   m_ObjectHideFlags: 0
@@ -2164,8 +2200,9 @@ GameObject:
   - component: {fileID: 1321366804}
   - component: {fileID: 1321366805}
   - component: {fileID: 1321366806}
+  - component: {fileID: 1321366807}
   m_Layer: 5
-  m_Name: BaseActionCommandPanel
+  m_Name: ActionCommandPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2178,18 +2215,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1321366800}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 990024725}
+  m_Father: {fileID: 1774556702}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -371, y: 36}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.000030517578, y: 0}
   m_SizeDelta: {x: 300, y: 400}
-  m_Pivot: {x: 1, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1321366802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2276,6 +2313,18 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1321366807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321366800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f591164e21255a4c951a90898aff4d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1368002865
 GameObject:
   m_ObjectHideFlags: 0
@@ -2717,8 +2766,9 @@ GameObject:
   - component: {fileID: 1495637584}
   - component: {fileID: 1495637583}
   - component: {fileID: 1495637585}
+  - component: {fileID: 1495637586}
   m_Layer: 5
-  m_Name: BaseMoveSelectionPanel
+  m_Name: AbilityCommandPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2731,18 +2781,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1495637579}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 990024725}
+  m_Father: {fileID: 1774556702}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -702, y: 36}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 0.000030517578, y: 0}
   m_SizeDelta: {x: 300, y: 400}
-  m_Pivot: {x: 1, y: 0}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &1495637581
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2829,6 +2879,18 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1495637586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495637579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc915677f8ff36f4698f026acf3bee86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1685623084
 GameObject:
   m_ObjectHideFlags: 0
@@ -2870,8 +2932,15 @@ MonoBehaviour:
   maxMp: 150
   currentMp: 125
   regenMp: 6
-  init: 190
   walkRange: 5
+  physAtk: 0
+  magAtk: 0
+  hitrate: 0
+  physResist: 0
+  magResist: 0
+  evasion: 0
+  init: 190
+  luck: 0
   isAttackable: 1
   moved: 0
   tookAction: 0
@@ -3028,6 +3097,44 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1730914793}
   m_CullTransparentMesh: 0
+--- !u!1 &1774556701
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1774556702}
+  m_Layer: 5
+  m_Name: CharacterControls
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1774556702
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774556701}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 192772556}
+  - {fileID: 1321366801}
+  - {fileID: 1495637580}
+  m_Father: {fileID: 990024725}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 413.47, y: -220.1}
+  m_SizeDelta: {x: 927, y: 459.8}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1797826397
 GameObject:
   m_ObjectHideFlags: 0
@@ -3069,8 +3176,15 @@ MonoBehaviour:
   maxMp: 340
   currentMp: 312
   regenMp: 0
-  init: 150
   walkRange: 4
+  physAtk: 0
+  magAtk: 0
+  hitrate: 0
+  physResist: 0
+  magResist: 0
+  evasion: 0
+  init: 150
+  luck: 0
   isAttackable: 1
   moved: 0
   tookAction: 0
@@ -3376,8 +3490,15 @@ MonoBehaviour:
   maxMp: 22
   currentMp: 22
   regenMp: 11
-  init: 300
   walkRange: 7
+  physAtk: 0
+  magAtk: 0
+  hitrate: 0
+  physResist: 0
+  magResist: 0
+  evasion: 0
+  init: 300
+  luck: 0
   isAttackable: 1
   moved: 0
   tookAction: 0
@@ -3497,8 +3618,15 @@ MonoBehaviour:
   maxMp: 240
   currentMp: 240
   regenMp: 0
-  init: 175
   walkRange: 4
+  physAtk: 0
+  magAtk: 0
+  hitrate: 0
+  physResist: 0
+  magResist: 0
+  evasion: 0
+  init: 175
+  luck: 0
   isAttackable: 1
   moved: 0
   tookAction: 0
@@ -3593,6 +3721,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: onClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 763919235717493792, guid: 08dbe5c3326708497970fde4d94ba50c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UI.BaseActionButtonHandler, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 763919235717493793, guid: 08dbe5c3326708497970fde4d94ba50c,
         type: 3}
