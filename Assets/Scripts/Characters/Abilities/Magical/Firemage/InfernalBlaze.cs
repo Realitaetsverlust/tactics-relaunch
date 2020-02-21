@@ -12,8 +12,7 @@ namespace Characters.Abilities.Magical.Firemage {
 		}
 
 		public override void applyEffectsToTarget(GameObject caster, GameObject target) {
-			int calculatedDamage = DamageCalculator.calculateDamage(caster, target, this);
-			target.GetComponent<CombatCharacterController>().subtractHp(calculatedDamage);
+			this.defaultDamage(caster, target);
 		}
 	}
 }

@@ -35,7 +35,7 @@ namespace Utils {
                 casterPower = 1;
             }
 
-            calculatedDamage = (abilityBasePower * casterPower / targetResist);
+            calculatedDamage = (casterPower - targetResist/2) * abilityBasePower / 100;
             
             return calculatedDamage;
         }
