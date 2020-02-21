@@ -14,7 +14,6 @@ public class CombatController : MonoBehaviour {
     private Camera _camera;
     private CameraController _cameraController;
     public static bool characterPlacementDone = false;
-    public readonly static string HINT_NOTIFICATION = "LMP_331";
 
     public void Start() {
         this._godObject = GameObject.Find("GodObject");
@@ -65,14 +64,7 @@ public class CombatController : MonoBehaviour {
 
     public static void handleAbilityUsage(BaseAbility ability, GameObject target) {
         GameObject caster = TurnOrder.getActiveCharacter();
-        AbilityEffects abilityEffects = ability.getEffectsOfAbility();
-
-        if(abilityEffects.damage >= 0) {
-            DamageCalculator.calculateDamage(caster, target, abilityEffects);
-        }
-
-        if(abilityEffects.heal >= 0) {
-            
-        }
+        
+        ability.applyEffectsToTarget(caster, target);
     }
 }

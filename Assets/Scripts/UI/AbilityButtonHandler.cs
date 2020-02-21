@@ -16,11 +16,14 @@ namespace UI {
     public class AbilityButtonHandler : BaseButton {
         public int layerMask;
         public bool targetMode;
+        public Range abilityRangeSelection;
         private BaseAbility _ability;
+        private GridController _gridController;
 
         public void Start() {
             base.Start();
             this.layerMask = 1 << 9;
+            this._gridController = GameObject.Find("terrainParent").GetComponent<GridController>();
         }
 
         public void Update() {
@@ -30,10 +33,14 @@ namespace UI {
                 if(Input.GetKeyDown(KeyCode.Escape)) {
                     this.targetMode = false;
                 }
-
+                
                 if(Input.GetKeyDown(KeyCode.Mouse0)) {
                     GameObject target = GridController.getActiveTile().GetComponent<GridElement>().getCharacterOnThisTile();
                     CombatController.handleAbilityUsage(this._ability, target);
+                    this.targetMode = false;
+                    this.abilityCommandPanelHandler.displayCommandStep();
+                    this.baseCommandPanelHandler.disableAction();
+                    this.abilityRangeSelection.hideRange();
                 }
             }
         }
@@ -43,8 +50,8 @@ namespace UI {
             
             this._ability = AbilityFactory.getAbility(this.name);
 
-            Range abilityRangeSelection = new Range(Rangefinder.findAllTilesInRange(TurnOrder.getActiveCharacter().GetComponent<CharacterBase>().getCurrentTileOfCharacter(), this._ability.range), "ability");
-            abilityRangeSelection.colorRange();
+            this.abilityRangeSelection = new Range(Rangefinder.findAllTilesInRange(TurnOrder.getActiveCharacter().GetComponent<CharacterBase>().getCurrentTileOfCharacter(), this._ability.range), "ability");
+            this.abilityRangeSelection.colorRange();
             this.targetMode = true;
         }
     }

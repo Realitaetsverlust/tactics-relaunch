@@ -1,4 +1,5 @@
-﻿using Characters.Utils;
+﻿using Characters.Abilities;
+using Characters.Utils;
 using Elements;
 using Elements.TileTypes;
 using TMPro;
@@ -84,14 +85,6 @@ namespace Characters {
 			if(this.currentHp > this.maxHp) {
 				this.currentHp = this.maxHp;
 			}
-		}
-
-		public int damageCalculation(int damage) {
-			// lots of complicated stuff here
-
-			int causedDamage = 10;
-			
-			return causedDamage < 0 ? 0 : causedDamage;
 		}
 
 		public void subtractHp(int damage) {

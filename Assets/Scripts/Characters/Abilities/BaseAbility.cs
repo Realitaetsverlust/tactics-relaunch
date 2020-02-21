@@ -6,6 +6,7 @@ namespace Characters.Abilities {
 		public int baseDamage;
 		public int range;
 		public int mpCost;
+		public int damageType; // 1 = phys, 2 = mag
 		private string _name;
 
 		public string name {
@@ -29,8 +30,6 @@ namespace Characters.Abilities {
 			this.job = type.Namespace.Substring(type.Namespace.LastIndexOf('.') + 1);
 		}
 
-		public AbilityEffects getEffectsOfAbility() {
-			return new AbilityEffects();
-		}
+		public abstract void applyEffectsToTarget(GameObject caster, GameObject target);
 	}
 }

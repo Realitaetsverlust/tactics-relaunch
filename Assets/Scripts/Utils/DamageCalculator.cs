@@ -12,13 +12,13 @@ using UnityEngine;
 
 namespace Utils {
     public static class DamageCalculator {
-        public static int calculateDamage(GameObject caster, GameObject target, AbilityEffects abilityEffects) {
+        public static int calculateDamage(GameObject caster, GameObject target, BaseAbility ability) {
             int calculatedDamage;
             int casterPower;
             int targetResist;
-            int abilityBasePower = abilityEffects.damage;
+            int abilityBasePower = ability.baseDamage;
             
-            if(abilityEffects.damageType == 2) {
+            if(ability.damageType == 2) {
                 casterPower = caster.GetComponent<CombatCharacterController>().magAtk;
                 targetResist = target.GetComponent<CombatCharacterController>().magResist;
             }
@@ -27,8 +27,6 @@ namespace Utils {
                 targetResist = target.GetComponent<CombatCharacterController>().physResist;
             }
             
-            //caster.getStatModifiersForAtk();
-
             if(targetResist <= 0) {
                 targetResist = 1;
             }
@@ -37,7 +35,7 @@ namespace Utils {
                 casterPower = 1;
             }
 
-            calculatedDamage = (abilityBasePower * casterPower / targetResist) / 100;
+            calculatedDamage = (abilityBasePower * casterPower / targetResist);
             
             return calculatedDamage;
         }
