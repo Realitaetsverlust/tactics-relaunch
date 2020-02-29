@@ -9,7 +9,7 @@ namespace UI {
     public class BaseWaitButtonHandler : BaseButton
     {
         public void onClick() {
-            
+			CombatController.endTurnForCurrentCharacter();   
         }
     }
 }

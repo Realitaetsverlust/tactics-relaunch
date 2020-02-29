@@ -16,7 +16,6 @@ namespace UI {
         private Range _currentMovementRange;
 
         public void Update() {
-            Debug.Log(this._isMovementPhase);
             if(this._isMovementPhase) {
                 Raycaster.castRay(1 << 9);
 

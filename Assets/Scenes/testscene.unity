@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43749025, g: 0.48531145, b: 0.5655863, a: 1}
+  m_IndirectSpecularColor: {r: 0.43748972, g: 0.48531097, b: 0.56558526, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -170,6 +170,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -240,7 +241,7 @@ MonoBehaviour:
   regenMp: 0
   walkRange: 5
   physAtk: 0
-  magAtk: 0
+  magAtk: 100
   hitrate: 0
   physResist: 0
   magResist: 0
@@ -263,6 +264,7 @@ GameObject:
   - component: {fileID: 192772557}
   - component: {fileID: 192772560}
   - component: {fileID: 192772559}
+  - component: {fileID: 192772561}
   m_Layer: 5
   m_Name: BaseCommandPanel
   m_TagString: Untagged
@@ -353,6 +355,24 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &192772561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 192772555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ce2383c560a40419c877eb6284cfa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveButton: {fileID: 0}
+  moveButtonHandler: {fileID: 0}
+  actionButton: {fileID: 0}
+  actionButtonHandler: {fileID: 0}
+  waitButton: {fileID: 0}
+  waitButtonHandler: {fileID: 0}
 --- !u!1 &211473306
 GameObject:
   m_ObjectHideFlags: 0
@@ -434,6 +454,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -565,7 +586,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 247318319}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: UI.BaseWaitButtonHandler, Assembly-CSharp
         m_MethodName: onClick
         m_Mode: 1
         m_Arguments:
@@ -622,7 +643,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 247318314}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4827c1ddb36497590dc059db0c9ae96, type: 3}
+  m_Script: {fileID: 11500000, guid: 78bbdba1e5254a009b9557e9a1d66302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &329435625
@@ -637,7 +658,6 @@ GameObject:
   - component: {fileID: 329435629}
   - component: {fileID: 329435628}
   - component: {fileID: 329435627}
-  - component: {fileID: 329435631}
   - component: {fileID: 329435630}
   m_Layer: 5
   m_Name: MovementButton
@@ -709,8 +729,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 329435631}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 329435630}
+        m_TargetAssemblyTypeName: UI.BaseMoveButtonHandler, Assembly-CSharp
         m_MethodName: onClick
         m_Mode: 1
         m_Arguments:
@@ -767,23 +787,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 329435625}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53e1f6a59ca34fd1bf23a18e4ac1da90, type: 3}
+  m_Script: {fileID: 11500000, guid: 104557ee59524a1a9a89d83186c55fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMovementPhase: 0
---- !u!114 &329435631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 329435625}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53e1f6a59ca34fd1bf23a18e4ac1da90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isMovementPhase: 0
 --- !u!1 &366580980
 GameObject:
   m_ObjectHideFlags: 0
@@ -860,10 +866,7 @@ GameObject:
   m_Component:
   - component: {fileID: 380042642}
   - component: {fileID: 380042641}
-  - component: {fileID: 380042643}
   - component: {fileID: 380042644}
-  - component: {fileID: 380042647}
-  - component: {fileID: 380042646}
   - component: {fileID: 380042645}
   - component: {fileID: 380042648}
   m_Layer: 0
@@ -899,18 +902,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &380042643
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 380042640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d25b61e338bf7841ba8f3503b846cca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &380042644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -933,31 +924,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bb41e152a094f8e8798112f581e36e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &380042646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 380042640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53e1f6a59ca34fd1bf23a18e4ac1da90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isMovementPhase: 0
---- !u!114 &380042647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 380042640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 639fc2fcbebe454ea302972938c55978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &380042648
@@ -1293,6 +1259,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1597,6 +1564,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2036,7 +2004,6 @@ GameObject:
   - component: {fileID: 1188636191}
   - component: {fileID: 1188636190}
   - component: {fileID: 1188636189}
-  - component: {fileID: 1188636192}
   - component: {fileID: 1188636193}
   m_Layer: 5
   m_Name: ActionButton
@@ -2161,19 +2128,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1188636187}
   m_CullTransparentMesh: 0
---- !u!114 &1188636192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 7891534827574861015, guid: 08dbe5c3326708497970fde4d94ba50c,
-    type: 3}
-  m_PrefabInstance: {fileID: 763919234691387965}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1188636187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 639fc2fcbebe454ea302972938c55978, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1188636193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2252,6 +2206,7 @@ MonoBehaviour:
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!222 &1321366803
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2826,6 +2781,7 @@ MonoBehaviour:
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!114 &1495637583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2972,6 +2928,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3216,6 +3173,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3416,6 +3374,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3530,6 +3489,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3658,6 +3618,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3837,5 +3798,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ActionButton
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 08dbe5c3326708497970fde4d94ba50c, type: 3}

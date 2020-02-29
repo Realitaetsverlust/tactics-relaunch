@@ -38,23 +38,11 @@ public class CombatController : MonoBehaviour {
         }
     }
 
-    public void initiateMovementForCurrentCharacter() {
-        CombatCharacterController activeCharacter = TurnOrder.getActiveCharacter().GetComponent<CombatCharacterController>();
-        HashSet<GameObject> foundRange = Rangefinder.findAllTilesInRange(
-            activeCharacter.getCurrentTileOfCharacter(), 
-            activeCharacter.GetComponent<CombatCharacterController>().walkRange
-            );
-        Range rangeObject = new Range(foundRange, "walking");
-        this._godObject.GetComponent<MovementInputHandler>().setCurrentRangeObject(rangeObject);
-        rangeObject.colorRange();
-    }
-    
-        
-    public void endTurnForCurrentCharacter() {
+    public static void endTurnForCurrentCharacter() {
         GameObject nextChar = TurnOrder.getNextCharacter();
-        this._godObject.GetComponent<MovementInputHandler>().enableMoveButton();
-        //this._godObject.GetComponent<ActionInputHandler>().enableButton();
-        this._cameraController.setCameraToCharacter(nextChar);
+        BaseCommandPanelHandler bcph = GameObject.Find("CombatUI/CharacterControls/BaseCommandPanel").GetComponent<BaseCommandPanelHandler>();
+        bcph.enableMove();
+        bcph.enableAction();
         nextChar.GetComponent<CombatCharacterController>().turnStart();
     }
 
