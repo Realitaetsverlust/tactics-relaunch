@@ -15,7 +15,7 @@ using Utils;
 namespace UI {
     public class AbilityButtonHandler : BaseButton {
         public int layerMask;
-        public bool targetMode;
+        private bool _targetMode = false;
         public Range abilityRangeSelection;
         private BaseAbility _ability;
         private GridController _gridController;
@@ -27,17 +27,17 @@ namespace UI {
         }
 
         public void Update() {
-            if(this.targetMode) {
+            if(this._targetMode) {
                 Raycaster.castRay(this.layerMask);
                 
                 if(Input.GetKeyDown(KeyCode.Escape)) {
-                    this.targetMode = false;
+                    this._targetMode = false;
                 }
                 
                 if(Input.GetKeyDown(KeyCode.Mouse0)) {
                     GameObject target = GridController.getActiveTile().GetComponent<GridElement>().getCharacterOnThisTile();
                     CombatController.handleAbilityUsage(this._ability, target);
-                    this.targetMode = false;
+                    this._targetMode = false;
                     this.abilityCommandPanelHandler.displayCommandStep();
                     this.baseCommandPanelHandler.disableAction();
                     this.abilityRangeSelection.hideRange();
@@ -52,7 +52,7 @@ namespace UI {
 
             this.abilityRangeSelection = new Range(Rangefinder.findAllTilesInRange(TurnOrder.getActiveCharacter().GetComponent<CharacterBase>().getCurrentTileOfCharacter(), this._ability.range), "ability");
             this.abilityRangeSelection.colorRange();
-            this.targetMode = true;
+            this._targetMode = true;
         }
     }
 }
