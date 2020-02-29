@@ -3,6 +3,7 @@ using Characters;
 using Characters.Abilities;
 using Elements;
 using InputHandlers;
+using UI;
 using UnityEngine;
 using Utils;
 
@@ -34,12 +35,7 @@ public class CombatController : MonoBehaviour {
                 this._cameraController.setCameraToCharacter(TurnOrder.getActiveCharacter());
                 CombatController.characterPlacementDone = false;
             }
-            this._combatBase();
         }
-    }
-
-    private void _combatBase() {
-        
     }
 
     public void initiateMovementForCurrentCharacter() {

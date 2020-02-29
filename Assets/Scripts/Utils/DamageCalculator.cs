@@ -3,13 +3,6 @@ using Characters;
 using Characters.Abilities;
 using UnityEngine;
 
-/*
- * Damage Calculation:
- * 1. Check if phys or mag - Pick corresponding power and resist
- * 2. Multiply ability power by caster power, divide by target resist
- * 3. Apply elemental bonusses
- */
-
 namespace Utils {
     public static class DamageCalculator {
         public static int calculateDamage(GameObject caster, GameObject target, BaseAbility ability) {

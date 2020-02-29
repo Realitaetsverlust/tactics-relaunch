@@ -20,27 +20,27 @@ namespace UI {
         }
 
         public void enableMove() {
-            this.enableButton(this.moveButton.GetComponent<Button>());
+            this._enableButton(this.moveButton.GetComponent<Button>());
         }
 
         public void disableMove() {
-            this.enableButton(this.moveButton.GetComponent<Button>());
+            this._disableButton(this.moveButton.GetComponent<Button>());
         }
 
         public void enableAction() {
-            this.enableButton(this.actionButton.GetComponent<Button>());
+            this._enableButton(this.actionButton.GetComponent<Button>());
         }
 
         public void disableAction() {
-            this.disableButton(this.actionButton.GetComponent<Button>());
+            this._disableButton(this.actionButton.GetComponent<Button>());
         }
 
-        public void disableButton(Button button) {
+        private void _disableButton(Button button) {
             button.GetComponent<Image>().color = Color.gray;
             button.enabled = false;
         }
-		
-        public void enableButton(Button button) {
+
+        private void _enableButton(Button button) {
             button.GetComponent<Image>().color = Color.white;
             button.enabled = true;
         }
