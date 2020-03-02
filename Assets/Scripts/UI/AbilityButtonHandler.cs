@@ -32,6 +32,9 @@ namespace UI {
                 
                 if(Input.GetKeyDown(KeyCode.Escape)) {
                     this._targetMode = false;
+                    this.abilityCommandPanelHandler.displayCommandStep();
+                    this.abilityRangeSelection.hideRange();
+                    
                 }
                 
                 if(Input.GetKeyDown(KeyCode.Mouse0)) {

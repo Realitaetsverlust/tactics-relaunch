@@ -21,6 +21,8 @@ namespace UI {
 
                 if(Input.GetKeyDown(KeyCode.Escape)) {
                     this._isMovementPhase = false;
+                    this._currentMovementRange.hideRange();
+                    this.abilityCommandPanelHandler.displayCommandStep();
                 }
                 
                 if(Input.GetKeyDown(KeyCode.Mouse0)) {
@@ -49,7 +51,7 @@ namespace UI {
                 activeCharacter.getCurrentTileOfCharacter(), 
                 activeCharacter.GetComponent<CombatCharacterController>().walkRange
             );
-            this._currentMovementRange = new Range(foundRange, "walking");
+            this._currentMovementRange = new Range(foundRange, "movement");
             _currentMovementRange.colorRange();
             this._isMovementPhase = true;
         }
