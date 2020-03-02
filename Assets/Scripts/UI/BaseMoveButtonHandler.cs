@@ -51,6 +51,7 @@ namespace UI {
                 activeCharacter.getCurrentTileOfCharacter(), 
                 activeCharacter.GetComponent<CombatCharacterController>().walkRange
             );
+            this.abilityCommandPanelHandler.hideCombatUi();
             this._currentMovementRange = new Range(foundRange, "movement");
             _currentMovementRange.colorRange();
             this._isMovementPhase = true;

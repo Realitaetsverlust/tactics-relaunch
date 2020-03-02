@@ -11,6 +11,7 @@ namespace UI {
         public void onClick() {
             this.actionCommandPanelHandler.populatePanel();
             this.actionCommandPanelHandler.displayActionSelectionStep();
+            CombatUiStateKeeper.step = 2;
         }
     }
 }

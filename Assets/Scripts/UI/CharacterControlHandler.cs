@@ -1,4 +1,5 @@
-﻿using Elements;
+﻿using System;
+using Elements;
 using UnityEngine;
 
 namespace UI {
@@ -7,13 +8,20 @@ namespace UI {
         private GameObject _baseCommandPanel;
         private GameObject _actionSelectionPanel;
         private GameObject _abilitySelectionPanel;
-        protected int step = 1;
 
         public void Start() {
             this._wrapper = GameObject.Find("CharacterControls");
             this._baseCommandPanel = this._wrapper.transform.Find("BaseCommandPanel").gameObject;
             this._actionSelectionPanel = this._wrapper.transform.Find("ActionCommandPanel").gameObject;
             this._abilitySelectionPanel = this._wrapper.transform.Find("AbilityCommandPanel").gameObject;
+        }
+
+        public void Update() {
+            if(CombatUiStateKeeper.jumpBackEnabled == true) {
+                if(Input.GetKeyDown(KeyCode.Escape)) {
+                    this.jumpOneStepBack();
+                }
+            }
         }
 
         public void hideCombatUi() {
@@ -24,28 +32,31 @@ namespace UI {
             this.gameObject.GetComponent<CanvasGroup>().alpha = 1;
         }
 
+        public void jumpOneStepBack() {
+            if(CombatUiStateKeeper.step == 3) {
+                this.displayActionSelectionStep();
+            } else if(CombatUiStateKeeper.step == 2) {
+                this.displayCommandStep();
+            }
+        }
+
         public void displayCommandStep() {
             this.showCombatUi();
-            this.step = 1;
-            this._baseCommandPanel.GetComponent<PanelManager>().showPanel();
-            this._actionSelectionPanel.GetComponent<PanelManager>().hidePanel();
-            this._abilitySelectionPanel.GetComponent<PanelManager>().hidePanel();
+            CombatUiStateKeeper.step = 1;
+            CombatUiStateKeeper.displayCommandStep();
         }
 
         public void displayActionSelectionStep() {
             this.showCombatUi();
-            this.step = 2;
-            this._baseCommandPanel.GetComponent<PanelManager>().showPanel();
-            this._actionSelectionPanel.GetComponent<PanelManager>().showPanel();
-            this._abilitySelectionPanel.GetComponent<PanelManager>().hidePanel();
+            CombatUiStateKeeper.step = 2;
+            CombatUiStateKeeper.displayActionSelectionStep();
+
         }
 
         public void displayAbilitySelectionStep() {
             this.showCombatUi();
-            this.step = 3;
-            this._baseCommandPanel.GetComponent<PanelManager>().showPanel();
-            this._actionSelectionPanel.GetComponent<PanelManager>().showPanel();
-            this._abilitySelectionPanel.GetComponent<PanelManager>().showPanel();
+            CombatUiStateKeeper.step = 3;
+            CombatUiStateKeeper.displayAbilitySelectionStep();
         }
     }
 }

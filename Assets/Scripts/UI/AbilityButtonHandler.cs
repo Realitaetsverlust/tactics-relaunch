@@ -32,9 +32,9 @@ namespace UI {
                 
                 if(Input.GetKeyDown(KeyCode.Escape)) {
                     this._targetMode = false;
-                    this.abilityCommandPanelHandler.displayCommandStep();
+                    this.abilityCommandPanelHandler.displayAbilitySelectionStep();
                     this.abilityRangeSelection.hideRange();
-                    
+                    CombatUiStateKeeper.jumpBackEnabled = true;
                 }
                 
                 if(Input.GetKeyDown(KeyCode.Mouse0)) {
@@ -56,6 +56,7 @@ namespace UI {
             this.abilityRangeSelection = new Range(Rangefinder.findAllTilesInRange(TurnOrder.getActiveCharacter().GetComponent<CharacterBase>().getCurrentTileOfCharacter(), this._ability.range), "ability");
             this.abilityRangeSelection.colorRange();
             this._targetMode = true;
+            CombatUiStateKeeper.jumpBackEnabled = false;
         }
     }
 }
