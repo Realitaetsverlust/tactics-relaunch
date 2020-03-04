@@ -9,6 +9,7 @@ namespace UI {
     public class BaseWaitButtonHandler : BaseButton
     {
         public void onClick() {
+            CombatUiStateKeeper.displayCommandStep();
 			CombatController.endTurnForCurrentCharacter();   
         }
     }

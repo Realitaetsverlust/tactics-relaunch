@@ -22,7 +22,7 @@ namespace Elements {
 			
 			RectTransform rectTransform = this.GetComponent<RectTransform>();
 			
-			rectTransform.sizeDelta = new Vector2(200f, calculatedPanelHeight);
+			rectTransform.sizeDelta = new Vector2(300f, calculatedPanelHeight);
 			rectTransform.position = new Vector3(rectTransform.position.x, this._positionOfActionButton.y, 0);
 			this.showPanel();
 		}

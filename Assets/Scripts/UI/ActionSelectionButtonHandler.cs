@@ -9,7 +9,7 @@ namespace UI {
     {
         public void onClick() {
             this.abilityCommandPanelHandler.populatePanel(this.name);
-            this.abilityCommandPanelHandler.displayAbilitySelectionStep();
+            CombatUiStateKeeper.displayAbilitySelectionStep();
             CombatUiStateKeeper.step = 3;
         }
     }

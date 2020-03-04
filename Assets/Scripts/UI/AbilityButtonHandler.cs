@@ -32,7 +32,7 @@ namespace UI {
                 
                 if(Input.GetKeyDown(KeyCode.Escape)) {
                     this._targetMode = false;
-                    this.abilityCommandPanelHandler.displayAbilitySelectionStep();
+                    CombatUiStateKeeper.displayAbilitySelectionStep();
                     this.abilityRangeSelection.hideRange();
                     CombatUiStateKeeper.jumpBackEnabled = true;
                 }
@@ -41,7 +41,7 @@ namespace UI {
                     GameObject target = GridController.getActiveTile().GetComponent<GridElement>().getCharacterOnThisTile();
                     CombatController.handleAbilityUsage(this._ability, target);
                     this._targetMode = false;
-                    this.abilityCommandPanelHandler.displayCommandStep();
+                    CombatUiStateKeeper.displayCommandStep();
                     this.baseCommandPanelHandler.disableAction();
                     this.abilityRangeSelection.hideRange();
                 }
@@ -49,7 +49,7 @@ namespace UI {
         }
 
         public void onClick() {
-            this.abilityCommandPanelHandler.hideCombatUi();
+            CombatUiStateKeeper.hideCombatUi();
             
             this._ability = AbilityFactory.getAbility(this.name);
 

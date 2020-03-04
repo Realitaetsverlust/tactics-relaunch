@@ -9,9 +9,9 @@ namespace UI {
     public class BaseActionButtonHandler : BaseButton
     {
         public void onClick() {
-            this.actionCommandPanelHandler.populatePanel();
-            this.actionCommandPanelHandler.displayActionSelectionStep();
+            CombatUiStateKeeper.displayActionSelectionStep();
             CombatUiStateKeeper.step = 2;
+            this.actionCommandPanelHandler.populatePanel();
         }
     }
 }

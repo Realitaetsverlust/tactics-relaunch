@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 
 namespace UI {
-    public class BaseCommandPanelHandler : CharacterControlHandler {
+    public class BaseCommandPanelHandler : MonoBehaviour {
         public GameObject moveButton;
         public BaseMoveButtonHandler moveButtonHandler;
         public GameObject actionButton;

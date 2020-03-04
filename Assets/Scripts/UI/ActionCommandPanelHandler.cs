@@ -13,7 +13,7 @@ using Utils;
  */
 
 namespace UI {
-    public class ActionCommandPanelHandler : CharacterControlHandler
+    public class ActionCommandPanelHandler : MonoBehaviour
     {
         public void populatePanel() {
             Moveset moveset = TurnOrder.getActiveCharacter().GetComponent<CombatCharacterController>().moveset;

@@ -22,7 +22,7 @@ namespace UI {
                 if(Input.GetKeyDown(KeyCode.Escape)) {
                     this._isMovementPhase = false;
                     this._currentMovementRange.hideRange();
-                    this.abilityCommandPanelHandler.displayCommandStep();
+                    CombatUiStateKeeper.displayCommandStep();
                 }
                 
                 if(Input.GetKeyDown(KeyCode.Mouse0)) {
@@ -35,7 +35,7 @@ namespace UI {
                        gridElement.tileType.passable == true) {
                         this._isMovementPhase = false;
                         TurnOrder.getActiveCharacter().GetComponent<CombatCharacterController>().setCharacterToTile(clickedTile);
-                        this.abilityCommandPanelHandler.displayCommandStep();
+                        CombatUiStateKeeper.displayCommandStep();
                         this.baseCommandPanelHandler.disableMove();
                         this._currentMovementRange.hideRange();
                     }
@@ -51,7 +51,7 @@ namespace UI {
                 activeCharacter.getCurrentTileOfCharacter(), 
                 activeCharacter.GetComponent<CombatCharacterController>().walkRange
             );
-            this.abilityCommandPanelHandler.hideCombatUi();
+            CombatUiStateKeeper.hideCombatUi();
             this._currentMovementRange = new Range(foundRange, "movement");
             _currentMovementRange.colorRange();
             this._isMovementPhase = true;

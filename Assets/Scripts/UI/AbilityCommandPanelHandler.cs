@@ -9,7 +9,7 @@ using UnityEngine.UI;
 using Utils;
 
 namespace UI {
-    public class AbilityCommandPanelHandler : CharacterControlHandler
+    public class AbilityCommandPanelHandler : MonoBehaviour
     {
         public void populatePanel(string job) {
             //Clear the panel from all objects
