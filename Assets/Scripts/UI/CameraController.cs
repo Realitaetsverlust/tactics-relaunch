@@ -2,8 +2,7 @@
 using Utils;
 
 namespace UI {
-    public class CameraController : MonoBehaviour
-    {
+    public class CameraController : MonoBehaviour {
         public float rotationSpeed = 200;
 
         private Camera _main;
@@ -11,11 +10,11 @@ namespace UI {
         private Vector3 _cameraOffset = new Vector3(-5f, 10f, 5f);
         private bool _cameraAttached = false;
         private GameObject _currentlyAttachedTile;
-        private float _distanceOfCameraToTile;
+        private Vector3 _desiredTile;
 
         private void Start() {
             this._main = Camera.main;
-            this.setCameraToTile(GameObject.Find("1-1"));
+            this.setCameraToTile(GameObject.Find("5-10"));
         }
 
         public void Update() {
@@ -28,21 +27,30 @@ namespace UI {
             }
         }
 
+        public void LateUpdate() {
+            if(this._desiredTile != Vector3.zero) {
+                this._main.transform.position = this._currentlyAttachedTile.transform.position + this._desiredTile;
+                //this._main.transform.position = Vector3.Lerp(this._currentlyAttachedTile.transform.position, this._desiredTile, 0.125f);
+            }
+        }
+
         public void setCameraToTile(GameObject tile) {
             Vector3 tilePosition = tile.transform.position;
 
             if(this._cameraAttached == false) {
                 this._main.transform.position = tilePosition + this._cameraOffset;
-                this._distanceOfCameraToTile = (tilePosition - this._main.transform.position).magnitude;
                 this._currentlyAttachedTile = tile;
                 this._cameraAttached = true;
                 return;
             }
 
-            Vector3 direction = this._currentlyAttachedTile.transform.position - this._main.transform.position;
+            Vector3 direction = this._main.transform.position - this._currentlyAttachedTile.transform.position;
 
-            this._main.transform.position = tilePosition + (direction * this._distanceOfCameraToTile);
-            this._main.transform.LookAt(tilePosition);
+            this._desiredTile = tilePosition + direction;
+            
+            Debug.Log(this._desiredTile);
+            this._main.transform.position = this._desiredTile;
+            
             this._currentlyAttachedTile = tile;
         }
 
