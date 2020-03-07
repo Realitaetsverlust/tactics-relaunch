@@ -1,69 +1,66 @@
-﻿using UnityEngine;
+﻿using Characters;
+using Elements.TileTypes;
+using UnityEngine;
 using Utils;
 
 namespace UI {
-    public class CameraController : MonoBehaviour {
-        public float rotationSpeed = 200;
+	public class CameraController : MonoBehaviour {
+		public float rotationSpeed = 200;
 
-        private Camera _main;
-        private Vector3 _mainCameraPosition;
-        private Vector3 _cameraOffset = new Vector3(-5f, 10f, 5f);
-        private bool _cameraAttached = false;
-        private GameObject _currentlyAttachedTile;
-        private Vector3 _desiredTile;
+		private Camera _main;
+		private Vector3 _mainCameraPosition;
+		private Vector3 _cameraOffset = new Vector3(-5f, 10f, 5f);
+		private bool _inRotation = false;
+		private GameObject _currentlyAttachedTile;
+		private GameObject _desiredTile;
+		private Vector3 _directionalVector = new Vector3(0, 0, 0);
 
-        private void Start() {
-            this._main = Camera.main;
-            this.setCameraToTile(GameObject.Find("5-10"));
-        }
+		private void Start() {
+			this._main = Camera.main;
+			this._currentlyAttachedTile = GameObject.Find("1-1");
+			this._desiredTile = GameObject.Find("1-1");
+			this.setNextTargetTileForCamera(GameObject.Find("5-10"));
+		}
 
-        public void Update() {
-            if(Input.GetKey(KeyCode.Q)) {
-                this.rotateLeft(TurnOrder.getActiveCharacter());
-            }
+		public void Update() {
+			if(Input.GetKey(KeyCode.Q)) {
+				this._inRotation = true;
+				this.rotateLeft(TurnOrder.getActiveCharacter().GetComponent<CombatCharacterController>().getCurrentTileOfCharacter());
+			}
 
-            if(Input.GetKey(KeyCode.E)) {
-                this.rotateRight(TurnOrder.getActiveCharacter());
-            }
-        }
+			if(Input.GetKey(KeyCode.E)) {
+				this._inRotation = true;
+				this.rotateRight(TurnOrder.getActiveCharacter().GetComponent<CombatCharacterController>().getCurrentTileOfCharacter());
+			}
+			
+			this._inRotation = false;
+		}
 
-        public void LateUpdate() {
-            if(this._desiredTile != Vector3.zero) {
-                this._main.transform.position = this._currentlyAttachedTile.transform.position + this._desiredTile;
-                //this._main.transform.position = Vector3.Lerp(this._currentlyAttachedTile.transform.position, this._desiredTile, 0.125f);
-            }
-        }
+		public void LateUpdate() {
+			//don't lerp while rotating or everything is FUCKED
+			if(this._inRotation == false) {
+				this._main.transform.position = Vector3.Lerp(this._main.transform.position, this._directionalVector, 0.125f);
+			}
+		}
 
-        public void setCameraToTile(GameObject tile) {
-            Vector3 tilePosition = tile.transform.position;
+		public void setNextTargetTileForCamera(GameObject tile) {
+			this._currentlyAttachedTile = this._desiredTile;
+			this._directionalVector = tile.transform.position + (this._main.transform.position - this._currentlyAttachedTile.transform.position);
+			this._desiredTile = tile;
+		}
 
-            if(this._cameraAttached == false) {
-                this._main.transform.position = tilePosition + this._cameraOffset;
-                this._currentlyAttachedTile = tile;
-                this._cameraAttached = true;
-                return;
-            }
+		public void rotateLeft(GameObject tile) {
+			float rotation = Time.deltaTime * this.rotationSpeed;
 
-            Vector3 direction = this._main.transform.position - this._currentlyAttachedTile.transform.position;
+			this.transform.RotateAround(tile.transform.position, new Vector3(0, 1, 0), rotation);
+			this._directionalVector = tile.transform.position + (this._main.transform.position - this._currentlyAttachedTile.transform.position);
+		}
 
-            this._desiredTile = tilePosition + direction;
-            
-            Debug.Log(this._desiredTile);
-            this._main.transform.position = this._desiredTile;
-            
-            this._currentlyAttachedTile = tile;
-        }
-
-        public void rotateLeft(GameObject character) {
-            float rotation = Time.deltaTime * this.rotationSpeed;
-
-            this.transform.RotateAround(character.transform.position, Vector3.up, rotation);
-        }
-
-        public void rotateRight(GameObject character) {
-            float rotation = Time.deltaTime * this.rotationSpeed;
-
-            this.transform.RotateAround(character.transform.position, Vector3.up, rotation * -1);
-        }
-    }
+		public void rotateRight(GameObject tile) {
+			float rotation = Time.deltaTime * this.rotationSpeed;
+			
+			this.transform.RotateAround(tile.transform.position, new Vector3(0, 1, 0), rotation * -1);
+			this._directionalVector = tile.transform.position + (this._main.transform.position - this._currentlyAttachedTile.transform.position);
+		}
+	}
 }

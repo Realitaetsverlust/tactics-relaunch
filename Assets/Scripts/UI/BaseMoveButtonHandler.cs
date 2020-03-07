@@ -38,7 +38,7 @@ namespace UI {
                         CombatUiStateKeeper.displayCommandStep();
                         this.baseCommandPanelHandler.disableMove();
                         this._currentMovementRange.hideRange();
-                        Camera.main.GetComponent<CameraController>().setCameraToTile(TurnOrder.getActiveCharacter().GetComponent<CombatCharacterController>().getCurrentTileOfCharacter());
+                        Camera.main.GetComponent<CameraController>().setNextTargetTileForCamera(TurnOrder.getActiveCharacter().GetComponent<CombatCharacterController>().getCurrentTileOfCharacter());
                     }
                     
                     //play "wrong sound"

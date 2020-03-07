@@ -13,7 +13,7 @@ namespace UI {
         public void onClick() {
             CombatUiStateKeeper.displayCommandStep();
 			CombatController.endTurnForCurrentCharacter();
-            Camera.main.GetComponent<CameraController>().setCameraToTile(TurnOrder.getActiveCharacter().GetComponent<CombatCharacterController>().getCurrentTileOfCharacter());
+            Camera.main.GetComponent<CameraController>().setNextTargetTileForCamera(TurnOrder.getActiveCharacter().GetComponent<CombatCharacterController>().getCurrentTileOfCharacter());
         }
     }
 }

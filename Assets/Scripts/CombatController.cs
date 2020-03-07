@@ -33,7 +33,7 @@ public class CombatController : MonoBehaviour {
             if(CombatController.characterPlacementDone) {
                 GameObject.Find("BaseCommandPanel").GetComponent<PanelManager>().showPanel();
                 
-                Camera.main.GetComponent<CameraController>().setCameraToTile(TurnOrder.getActiveCharacter().GetComponent<CombatCharacterController>().getCurrentTileOfCharacter());
+                Camera.main.GetComponent<CameraController>().setNextTargetTileForCamera(TurnOrder.getActiveCharacter().GetComponent<CombatCharacterController>().getCurrentTileOfCharacter());
                 CombatController.characterPlacementDone = false;
             }
         }
