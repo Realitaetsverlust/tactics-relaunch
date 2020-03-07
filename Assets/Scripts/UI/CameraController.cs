@@ -2,15 +2,20 @@
 using Utils;
 
 namespace UI {
-    public class CameraController : MonoBehaviour {
+    public class CameraController : MonoBehaviour
+    {
         public float rotationSpeed = 200;
 
         private Camera _main;
-        private GameObject _target;
         private Vector3 _mainCameraPosition;
+        private Vector3 _cameraOffset = new Vector3(-5f, 10f, 5f);
+        private bool _cameraAttached = false;
+        private GameObject _currentlyAttachedTile;
+        private float _distanceOfCameraToTile;
 
         private void Start() {
             this._main = Camera.main;
+            this.setCameraToTile(GameObject.Find("1-1"));
         }
 
         public void Update() {
@@ -23,12 +28,22 @@ namespace UI {
             }
         }
 
-        public void setCameraToCharacter(GameObject character) {
-            Vector3 characterPosition = character.transform.position;
+        public void setCameraToTile(GameObject tile) {
+            Vector3 tilePosition = tile.transform.position;
 
-            this._main.transform.position = new Vector3(characterPosition.x - 5f,
-                characterPosition.y + 10f,
-                characterPosition.z + 5f);
+            if(this._cameraAttached == false) {
+                this._main.transform.position = tilePosition + this._cameraOffset;
+                this._distanceOfCameraToTile = (tilePosition - this._main.transform.position).magnitude;
+                this._currentlyAttachedTile = tile;
+                this._cameraAttached = true;
+                return;
+            }
+
+            Vector3 direction = this._currentlyAttachedTile.transform.position - this._main.transform.position;
+
+            this._main.transform.position = tilePosition + (direction * this._distanceOfCameraToTile);
+            this._main.transform.LookAt(tilePosition);
+            this._currentlyAttachedTile = tile;
         }
 
         public void rotateLeft(GameObject character) {
