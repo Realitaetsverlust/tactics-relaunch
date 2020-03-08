@@ -6,12 +6,13 @@ using Utils;
 namespace UI {
 	public class CameraController : MonoBehaviour {
 		public float rotationSpeed = 200;
+		public float moveSpeed = 0.125f;
 
 		private Camera _main;
 		private Vector3 _mainCameraPosition;
 		private Vector3 _cameraOffset = new Vector3(-5f, 10f, 5f);
 		private bool _inRotation = false;
-		private GameObject _currentlyAttachedTile;
+		public GameObject _currentlyAttachedTile;
 		private GameObject _desiredTile;
 		private Vector3 _directionalVector = new Vector3(0, 0, 0);
 
@@ -39,28 +40,33 @@ namespace UI {
 		public void LateUpdate() {
 			//don't lerp while rotating or everything is FUCKED
 			if(this._inRotation == false) {
-				this._main.transform.position = Vector3.Lerp(this._main.transform.position, this._directionalVector, 0.125f);
+				this._main.transform.position = Vector3.Lerp(this._main.transform.position, this._directionalVector, this.moveSpeed);
 			}
 		}
 
 		public void setNextTargetTileForCamera(GameObject tile) {
-			this._currentlyAttachedTile = this._desiredTile;
-			this._directionalVector = tile.transform.position + (this._main.transform.position - this._currentlyAttachedTile.transform.position);
-			this._desiredTile = tile;
+			Vector3 direction = this._main.transform.position - this._currentlyAttachedTile.transform.position;
+			
+			this._directionalVector = tile.transform.position + direction;
+			this._currentlyAttachedTile = tile;
 		}
 
 		public void rotateLeft(GameObject tile) {
+			Vector3 tilePosition = tile.transform.position;
+			
 			float rotation = Time.deltaTime * this.rotationSpeed;
 
-			this.transform.RotateAround(tile.transform.position, new Vector3(0, 1, 0), rotation);
-			this._directionalVector = tile.transform.position + (this._main.transform.position - this._currentlyAttachedTile.transform.position);
+			this.transform.RotateAround(tilePosition, new Vector3(0, 1, 0), rotation);
+			this._directionalVector = this._main.transform.position;
 		}
 
 		public void rotateRight(GameObject tile) {
+			Vector3 tilePosition = tile.transform.position;
+
 			float rotation = Time.deltaTime * this.rotationSpeed;
 			
 			this.transform.RotateAround(tile.transform.position, new Vector3(0, 1, 0), rotation * -1);
-			this._directionalVector = tile.transform.position + (this._main.transform.position - this._currentlyAttachedTile.transform.position);
+			this._directionalVector = this._main.transform.position;
 		}
 	}
 }
