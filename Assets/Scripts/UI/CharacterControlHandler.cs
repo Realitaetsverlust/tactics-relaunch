@@ -31,8 +31,6 @@ namespace UI {
         }
 
         private void jumpOneStepBack() {
-            Debug.Log(this.name);
-            Debug.Log(CombatUiStateKeeper.step);
             if(CombatUiStateKeeper.step == 3) {
                 CombatUiStateKeeper.displayActionSelectionStep();
             } else if(CombatUiStateKeeper.step == 2) {

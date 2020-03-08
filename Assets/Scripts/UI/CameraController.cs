@@ -12,11 +12,13 @@ namespace UI {
 		private Vector3 _mainCameraPosition;
 		private Vector3 _cameraOffset = new Vector3(-5f, 10f, 5f);
 		private bool _inRotation = false;
-		public GameObject _currentlyAttachedTile;
+		private GameObject _currentlyAttachedTile;
 		private GameObject _desiredTile;
 		private Vector3 _directionalVector = new Vector3(0, 0, 0);
+		private MapOverviewHandler _mapOverviewHandler;
 
 		private void Start() {
+			this._mapOverviewHandler = GameObject.Find("OverviewModeButton").GetComponent<MapOverviewHandler>();
 			this._main = Camera.main;
 			this._currentlyAttachedTile = GameObject.Find("1-1");
 			this._desiredTile = GameObject.Find("1-1");
@@ -24,23 +26,27 @@ namespace UI {
 		}
 
 		public void Update() {
-			if(Input.GetKey(KeyCode.Q)) {
-				this._inRotation = true;
-				this.rotateLeft(TurnOrder.getActiveCharacter().GetComponent<CombatCharacterController>().getCurrentTileOfCharacter());
-			}
+			if(this._mapOverviewHandler.isOverviewMode == false) {
+				if(Input.GetKey(KeyCode.Q)) {
+					this._inRotation = true;
+					this.rotateLeft(TurnOrder.getActiveCharacter().GetComponent<CombatCharacterController>().getCurrentTileOfCharacter());
+				}
 
-			if(Input.GetKey(KeyCode.E)) {
-				this._inRotation = true;
-				this.rotateRight(TurnOrder.getActiveCharacter().GetComponent<CombatCharacterController>().getCurrentTileOfCharacter());
-			}
+				if(Input.GetKey(KeyCode.E)) {
+					this._inRotation = true;
+					this.rotateRight(TurnOrder.getActiveCharacter().GetComponent<CombatCharacterController>().getCurrentTileOfCharacter());
+				}
 			
-			this._inRotation = false;
+				this._inRotation = false;
+			}
 		}
 
 		public void LateUpdate() {
-			//don't lerp while rotating or everything is FUCKED
-			if(this._inRotation == false) {
-				this._main.transform.position = Vector3.Lerp(this._main.transform.position, this._directionalVector, this.moveSpeed);
+			if(this._mapOverviewHandler.isOverviewMode == false) {
+				//don't lerp while rotating or everything is FUCKED
+				if(this._inRotation == false) {
+					this._main.transform.position = Vector3.Lerp(this._main.transform.position, this._directionalVector, this.moveSpeed);
+				}	
 			}
 		}
 
