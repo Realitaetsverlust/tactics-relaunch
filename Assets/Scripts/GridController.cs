@@ -52,4 +52,34 @@ public class GridController : MonoBehaviour {
 
 		return null;
 	}
+
+	public static Dictionary<string, float> getMaximumBoundsOfPlayingField() {
+		Dictionary<string, float> positionalDictionary = new Dictionary<string, float>();
+		positionalDictionary.Add("maxX", 0);
+		positionalDictionary.Add("maxZ", 0);
+		positionalDictionary.Add("minX", 0);
+		positionalDictionary.Add("minZ", 0);
+		
+		foreach(KeyValuePair<string,GameObject> gridElement in GridController._gridElements) {
+			Vector3 gridElementPosition = gridElement.Value.transform.position;
+				
+			if(gridElementPosition.x > positionalDictionary["maxX"]) {
+				positionalDictionary["maxX"] = gridElementPosition.x;
+			}	
+			
+			if(gridElementPosition.z > positionalDictionary["maxZ"]) {
+				positionalDictionary["maxZ"] = gridElementPosition.z;
+			}
+				
+			if(gridElementPosition.x < positionalDictionary["minX"]) {
+				positionalDictionary["minX"] = gridElementPosition.x;
+			}	
+			
+			if(gridElementPosition.z < positionalDictionary["minZ"]) {
+				positionalDictionary["minZ"] = gridElementPosition.z;
+			}
+		}
+
+		return positionalDictionary;
+	}
 }

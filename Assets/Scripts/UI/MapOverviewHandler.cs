@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace UI {
     public class MapOverviewHandler : MonoBehaviour {
+        [HideInInspector]
         public bool isOverviewMode = false;
         public float velocity = 0.5f;
 
@@ -32,7 +33,7 @@ namespace UI {
         }
 
         public void onClick() {
-            this.isOverviewMode = true;
+            this.isOverviewMode = this.isOverviewMode != true;
         }
     }
 }

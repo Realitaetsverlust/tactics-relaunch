@@ -1,4 +1,5 @@
-﻿using Characters;
+﻿using System.Collections.Generic;
+using Characters;
 using Elements.TileTypes;
 using UnityEngine;
 using Utils;
@@ -23,6 +24,10 @@ namespace UI {
 			this._currentlyAttachedTile = GameObject.Find("1-1");
 			this._desiredTile = GameObject.Find("1-1");
 			this.setNextTargetTileForCamera(GameObject.Find("5-10"));
+			foreach(KeyValuePair<string,float> keyValuePair in GridController.getMaximumBoundsOfPlayingField()) {
+				Debug.Log(keyValuePair.Key);
+				Debug.Log(keyValuePair.Value);
+			}
 		}
 
 		public void Update() {
