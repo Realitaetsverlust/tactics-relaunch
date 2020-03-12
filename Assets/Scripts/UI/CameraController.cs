@@ -11,10 +11,8 @@ namespace UI {
 
 		private Camera _main;
 		private Vector3 _mainCameraPosition;
-		private Vector3 _cameraOffset = new Vector3(-5f, 10f, 5f);
 		private bool _inRotation = false;
 		private GameObject _currentlyAttachedTile;
-		private GameObject _desiredTile;
 		private Vector3 _directionalVector = new Vector3(0, 0, 0);
 		private MapOverviewHandler _mapOverviewHandler;
 
@@ -22,12 +20,7 @@ namespace UI {
 			this._mapOverviewHandler = GameObject.Find("OverviewModeButton").GetComponent<MapOverviewHandler>();
 			this._main = Camera.main;
 			this._currentlyAttachedTile = GameObject.Find("1-1");
-			this._desiredTile = GameObject.Find("1-1");
 			this.setNextTargetTileForCamera(GameObject.Find("5-10"));
-			foreach(KeyValuePair<string,float> keyValuePair in GridController.getMaximumBoundsOfPlayingField()) {
-				Debug.Log(keyValuePair.Key);
-				Debug.Log(keyValuePair.Value);
-			}
 		}
 
 		public void Update() {
