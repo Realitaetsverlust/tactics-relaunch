@@ -1027,6 +1027,7 @@ GameObject:
   - component: {fileID: 407748393}
   - component: {fileID: 407748392}
   - component: {fileID: 407748391}
+  - component: {fileID: 407748395}
   m_Layer: 5
   m_Name: OverviewModeButton
   m_TagString: Untagged
@@ -1067,7 +1068,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOverviewMode: 0
-  velocity: 0.5
+  velocity: {x: 0.5, y: 0, z: 0.5}
 --- !u!114 &407748392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1160,6 +1161,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 407748389}
   m_CullTransparentMesh: 0
+--- !u!225 &407748395
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 407748389}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &452789583
 GameObject:
   m_ObjectHideFlags: 0
@@ -1419,7 +1432,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &699457890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3784,7 +3797,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2068883704
 MonoBehaviour:
   m_ObjectHideFlags: 0
