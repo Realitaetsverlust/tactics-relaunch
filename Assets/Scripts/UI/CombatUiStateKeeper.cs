@@ -10,12 +10,14 @@ namespace UI {
         private static readonly GameObject ActionSelectionPanel;
         private static readonly GameObject AbilitySelectionPanel;
         private static readonly GameObject CombatUiPanel;
+        private static readonly GameObject OverviewButton;
 
         static CombatUiStateKeeper() {
             CombatUiStateKeeper.CombatUiPanel = GameObject.Find("CombatUI");
-            CombatUiStateKeeper.BaseCommandPanel = GameObject.Find("BaseCommandPanel").gameObject;
-            CombatUiStateKeeper.ActionSelectionPanel = GameObject.Find("ActionCommandPanel").gameObject;
-            CombatUiStateKeeper.AbilitySelectionPanel = GameObject.Find("AbilityCommandPanel").gameObject;
+            CombatUiStateKeeper.BaseCommandPanel = GameObject.Find("BaseCommandPanel");
+            CombatUiStateKeeper.ActionSelectionPanel = GameObject.Find("ActionCommandPanel");
+            CombatUiStateKeeper.AbilitySelectionPanel = GameObject.Find("AbilityCommandPanel");
+            CombatUiStateKeeper.OverviewButton = GameObject.Find("OverviewModeButton");
         }
 
         public static void displayCommandStep() {
@@ -29,6 +31,8 @@ namespace UI {
             
             CombatUiStateKeeper.AbilitySelectionPanel.GetComponent<CanvasGroup>().alpha = 0;
             CombatUiStateKeeper.AbilitySelectionPanel.GetComponent<CanvasGroup>().blocksRaycasts = false;
+
+            CombatUiStateKeeper.OverviewButton.GetComponent<CanvasGroup>().alpha = 1;
         }
         
         public static void displayActionSelectionStep() {
@@ -42,6 +46,8 @@ namespace UI {
 
             CombatUiStateKeeper.AbilitySelectionPanel.GetComponent<CanvasGroup>().alpha = 0;
             CombatUiStateKeeper.AbilitySelectionPanel.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            
+            CombatUiStateKeeper.OverviewButton.GetComponent<CanvasGroup>().alpha = 0;
         }
         
         public static void displayAbilitySelectionStep() {
@@ -55,6 +61,8 @@ namespace UI {
             
             CombatUiStateKeeper.AbilitySelectionPanel.GetComponent<CanvasGroup>().alpha = 1;
             CombatUiStateKeeper.AbilitySelectionPanel.GetComponent<CanvasGroup>().blocksRaycasts = true;
+            
+            CombatUiStateKeeper.OverviewButton.GetComponent<CanvasGroup>().alpha = 0;
         }
 
         public static void hideCombatUi() {

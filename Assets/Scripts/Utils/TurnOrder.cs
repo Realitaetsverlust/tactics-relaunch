@@ -26,9 +26,6 @@ namespace Utils {
             TurnOrder._turn += 1;
             TurnOrder.turnCount += 1;
             
-            Debug.Log(TurnOrder._turn);
-            Debug.Log(TurnOrder._charactersInCombat);
-
             if(TurnOrder._turn > TurnOrder._charactersInCombat) {
                 TurnOrder._turn = 1;
             }
