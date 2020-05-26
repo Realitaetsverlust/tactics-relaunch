@@ -1,0 +1,44 @@
+﻿using System;
+using UnityEngine;
+using UnityEngine.AI;
+
+namespace WorldMovement {
+    [RequireComponent(typeof(PlayerMotor))]
+    public class PlayerMovementController : MonoBehaviour {
+        private Camera _cam;
+        private PlayerMotor _motor;
+
+        public void Start() {
+            this._cam = Camera.main;
+            this._motor = this.GetComponent<PlayerMotor>();
+        }
+
+        public void Update() {
+            Vector3 position = this.transform.position;
+            
+            if(Input.GetKey(KeyCode.LeftShift)) {
+                this._motor.GetComponent<NavMeshAgent>().speed = 20;
+            } else {
+                this._motor.GetComponent<NavMeshAgent>().speed = 5;
+            }
+
+            if(Input.GetKey(KeyCode.W)) {
+                position.z += 1;
+            }
+
+            if(Input.GetKey(KeyCode.S)) {
+                position.z -= 1;
+            }
+            
+            if(Input.GetKey(KeyCode.A)) {
+                position.x -= 1;
+            }
+
+            if(Input.GetKey(KeyCode.D)) {
+                position.x += 1;
+            }
+            
+            this._motor.moveToPoint(position);
+        }
+    }
+}
