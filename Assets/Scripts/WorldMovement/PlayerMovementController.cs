@@ -40,5 +40,9 @@ namespace WorldMovement {
             
             this._motor.moveToPoint(position);
         }
+
+        public void spawnCharacterToLocation(Vector3 spawnCoordinates) {
+            this.transform.position = spawnCoordinates;
+        }
     }
 }
