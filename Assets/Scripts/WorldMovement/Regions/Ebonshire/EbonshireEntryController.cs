@@ -6,6 +6,5 @@ namespace WorldMovement.Regions.Ebonshire {
         public override void OnTriggerEnter(Collider other) {
             this.loadArea(new Ebonshire());
         }
-        
     }
 }
