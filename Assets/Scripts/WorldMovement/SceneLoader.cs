@@ -21,16 +21,21 @@ namespace WorldMovement {
         }
 
         protected void loadWorldMap(BaseRegion areaNameComingFrom) {
-            this.StartCoroutine(this._loadSceneWithTransition("Scenes/WorldOverview/WorldOverview", areaNameComingFrom.spawnPointOnExit, "", "")); 
+            this.StartCoroutine(this._loadSceneWithTransition("Scenes/WorldOverview/WorldOverview", areaNameComingFrom.spawnPointOnExit, "", ""));
         }
-
+        
         private IEnumerator _loadSceneWithTransition(string sceneToLoad, Vector3 spawnCoordinates, string regionName, string regionSubtext) {
             this.screenFade.SetTrigger(SceneLoader.AnimatorTrigger);
             GameObject.Find("SceneLoader/SceneFader/Image/RegionName").GetComponent<Text>().text = regionName;
             GameObject.Find("SceneLoader/SceneFader/Image/RegionSubtext").GetComponent<Text>().text = regionSubtext;
-            
+
             yield return new WaitForSeconds(3f);
-            SceneManager.LoadScene(sceneToLoad);
+            
+            AsyncOperation async = SceneManager.LoadSceneAsync(sceneToLoad);
+            
+            while (!async.isDone) {
+                yield return false;
+            }
             
             GameObject.Find("SceneLoader/SceneFader/Image/RegionName").GetComponent<Text>().text = regionName;
             GameObject.Find("SceneLoader/SceneFader/Image/RegionSubtext").GetComponent<Text>().text = regionSubtext;
