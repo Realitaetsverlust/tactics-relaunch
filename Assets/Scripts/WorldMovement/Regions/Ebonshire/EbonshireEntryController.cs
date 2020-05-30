@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 
 namespace WorldMovement.Regions.Ebonshire {
-    public class EbonshireEntryController : SceneLoader
-    {
-        public override void OnTriggerEnter(Collider other) {
-            this.loadArea(new Ebonshire());
+    public class EbonshireEntryController : MonoBehaviour {
+        public void OnTriggerEnter(Collider other) {
+            GlobalSceneLoader.loadScene(new Ebonshire());
         }
     }
 }

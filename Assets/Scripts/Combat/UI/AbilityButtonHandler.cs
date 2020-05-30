@@ -20,7 +20,7 @@ namespace UI {
         private BaseAbility _ability;
         private GridController _gridController;
 
-        public void Start() {
+        public new void Start() {
             base.Start();
             this.layerMask = 1 << 9;
             this._gridController = GameObject.Find("terrainParent").GetComponent<GridController>();
