@@ -225,6 +225,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3124523952039890108, guid: b240641bd1f17ab41915c6e8857a370e,
+        type: 3}
+      propertyPath: m_AngularSpeed
+      value: 1200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3124523952039890108, guid: b240641bd1f17ab41915c6e8857a370e,
+        type: 3}
+      propertyPath: m_AutoBraking
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3124523952039890109, guid: b240641bd1f17ab41915c6e8857a370e,
         type: 3}
       propertyPath: m_LocalPosition.x

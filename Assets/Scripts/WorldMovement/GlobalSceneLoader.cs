@@ -53,8 +53,8 @@ namespace WorldMovement {
             SceneManager.LoadScene(nextScene, LoadSceneMode.Additive);
             this._currentScene = SceneManager.GetSceneByPath(String.Concat("Assets/", nextScene, ".unity"));
 
-            this.player.GetComponent<PlayerMovementController>().spawnCharacterToLocation(spawnCoordinates);
             this.screenFade.SetTrigger(GlobalSceneLoader.EndTransition);
+            this.player.GetComponent<PlayerMovementController>().spawnCharacterToLocation(spawnCoordinates);
             this.player.GetComponent<PlayerMovementController>().enableMovement();
         }
     }

@@ -12,7 +12,11 @@ namespace WorldMovement {
         }
 
         public void moveToPoint(Vector3 point) {
-            this._agent.SetDestination(point);
+            this._agent.Move(point);
+        }
+
+        public void warpToPoint(Vector3 point) {
+            this._agent.Warp(point);
         }
     }
 }
