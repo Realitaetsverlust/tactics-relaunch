@@ -18,7 +18,8 @@ namespace WorldMovement {
         public GameObject player;
     
         private Scene _currentScene;
-        private static readonly int Start = Animator.StringToHash("start");
+        private static readonly int BeginTransition = Animator.StringToHash("BeginTransition");
+        private static readonly int EndTransition = Animator.StringToHash("EndTransition");
 
         private void Awake() {
             if (GlobalSceneLoader.instance != null && GlobalSceneLoader.instance != this) {
@@ -37,10 +38,14 @@ namespace WorldMovement {
         }
     
         private IEnumerator _loadScene(string nextScene, Vector3 spawnCoordinates, string regionName, string regionSubtext, float transitionTime) {
-            this.screenFade.SetTrigger(GlobalSceneLoader.Start);
+            this.screenFade.SetTrigger(GlobalSceneLoader.BeginTransition);
+            this.player.GetComponent<PlayerMovementController>().disableMovement();
+            
+            this.regionNameField.text = regionName;
+            this.regionSubtextField.text = regionSubtext;
 
             yield return new WaitForSeconds(transitionTime);
-            
+
             if(this._currentScene.isLoaded) {
                 SceneManager.UnloadSceneAsync(this._currentScene);
             }
@@ -48,10 +53,9 @@ namespace WorldMovement {
             SceneManager.LoadScene(nextScene, LoadSceneMode.Additive);
             this._currentScene = SceneManager.GetSceneByPath(String.Concat("Assets/", nextScene, ".unity"));
 
-            this.regionNameField.text = regionName;
-            this.regionSubtextField.name = regionSubtext;
-            
             this.player.GetComponent<PlayerMovementController>().spawnCharacterToLocation(spawnCoordinates);
+            this.screenFade.SetTrigger(GlobalSceneLoader.EndTransition);
+            this.player.GetComponent<PlayerMovementController>().enableMovement();
         }
     }
 }

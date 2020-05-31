@@ -87,6 +87,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1124840740400479294}
+  - component: {fileID: 4034666206657552326}
   m_Layer: 0
   m_Name: SceneLoader
   m_TagString: Untagged
@@ -109,6 +110,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4034666206657552326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124840740400479295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 550274df6d5e96844b524a90d3efa932, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  regionNameField: {fileID: 1124840741278337671}
+  regionSubtextField: {fileID: 1124840740034761013}
+  screenFade: {fileID: 1124840740643695877}
+  player: {fileID: 0}
 --- !u!1 &1124840740643695875
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,7 +212,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1124840740643695875}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -209,7 +226,7 @@ Animator:
   m_GameObject: {fileID: 1124840740643695875}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 38c52d8a03e19ad42b38530c2593b471, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8ec45a17a7be3d341b23e4eaa3bcd9df, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
