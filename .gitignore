@@ -123,5 +123,5 @@ sysinfo.txt
 
 # Crashlytics generated file
 
-
+*.meta
 
