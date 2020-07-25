@@ -232,6 +232,7 @@
      <Compile Include="Assets\Scripts\Combat\Utils\Rangefinder.cs" />
      <Compile Include="Assets\Scripts\Combat\Utils\TurnOrder.cs" />
      <Compile Include="Assets\Scripts\Global\BaseUi.cs" />
+     <Compile Include="Assets\Scripts\Global\Team.cs" />
      <Compile Include="Assets\Scripts\WorldMovement\CameraController.cs" />
      <Compile Include="Assets\Scripts\WorldMovement\GlobalSceneLoader.cs" />
      <Compile Include="Assets\Scripts\WorldMovement\GlobalSceneStateHandler.cs" />
